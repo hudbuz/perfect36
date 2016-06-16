@@ -1,0 +1,22 @@
+Take a Test
+
+
+<%= form_for @test do |f| %>
+Test Code:
+<%= f.collection_select  :answer_key_id, AnswerKey.all, :id, :code %><br><br><br>
+<%= f.fields_for :test_responses do |r| %>
+English:<br>
+<% @index = 1 %>
+<% @section = 'english' %>
+<% 75.times do |r| %>
+
+<%= @index %>  -   
+<%= render partial:'/tests/choices', locals:{index: @index, section: @section } %>
+
+
+<% @index += 1 %>
+
+<% end %>
+<% end %>
+<%= f.submit %>
+<% end %>
