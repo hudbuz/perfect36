@@ -4,19 +4,12 @@ Take a Test
 <%= form_for @test do |f| %>
 Test Code:
 <%= f.collection_select  :answer_key_id, AnswerKey.all, :id, :code %><br><br><br>
-<%= f.fields_for :test_responses do |r| %>
-English:<br>
-<% @index = 1 %>
-<% @section = 'english' %>
-<% 75.times do |r| %>
-
-<%= @index %>  -   
-<%= render partial:'/tests/choices', locals:{index: @index, section: @section } %>
+<%= f.hidden_field :user_id, value: current_user.id %>
 
 
-<% @index += 1 %>
+<%= render partial:'/tests/test', locals:{format: @format, f: f} %>
 
-<% end %>
-<% end %>
+
+
 <%= f.submit %>
 <% end %>

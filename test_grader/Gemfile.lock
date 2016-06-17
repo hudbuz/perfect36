@@ -42,6 +42,10 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (9.0.5)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -86,6 +90,8 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    pdf2html (0.1.0)
+      cocaine (= 0.5.3)
     pkg-config (1.1.7)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -165,10 +171,13 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  climate_control (~> 0.0.3)
+  cocaine
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  pdf2html
   pry
   rails (= 4.2.6)
   sass-rails (~> 5.0)

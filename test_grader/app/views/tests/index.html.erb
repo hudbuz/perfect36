@@ -5,14 +5,12 @@ Hello <%= @user.name %>
 Previous Tests :
 <br>
 
-<div><strong> ACT 72g <br></strong>
+<% @tests.each do |x| %>
 
-Writing 33<br>
-Math 36<br>
-Reading 29<br>
-Science 32</div>
 
+<%= link_to x.answer_key.code, user_test_path(@user.id, x.id) %>
+<% end %>
 
 
 
-<%= link_to 'Take a New Test', new_test_path %>
+<%= link_to 'Take a New Test', new_user_test_path %>

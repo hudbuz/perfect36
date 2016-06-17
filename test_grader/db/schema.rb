@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615232955) do
+ActiveRecord::Schema.define(version: 20160616213034) do
 
   create_table "answer_keys", force: :cascade do |t|
     t.string   "code"
@@ -29,23 +29,24 @@ ActiveRecord::Schema.define(version: 20160615232955) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "student_id"
     t.integer  "test_id"
     t.string   "answer_choice"
-    t.string   "section"
     t.integer  "question"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "score",         default: 0
     t.string   "code"
+    t.integer  "section_id"
+    t.integer  "answer_key_id"
+    t.integer  "user_id"
   end
 
   create_table "sections", force: :cascade do |t|
     t.string   "title"
     t.integer  "test_id"
-    t.string   "answer_key_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "answer_key_id"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160615232955) do
     t.datetime "updated_at",                           null: false
     t.string   "status",        default: "incomplete"
     t.integer  "answer_key_id"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

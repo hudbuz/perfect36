@@ -7,13 +7,11 @@ Hello <%= @user.name %>
 
 Previous Tests :
 <br>
+<% @user.tests.each do |x| %>
+<div><strong> <%= x.answer_key.code %> <br></strong>
+  <%= x.section_score('english', x) %>
+  <% end %>
 
-<div><strong> ACT 72g <br></strong>
-
-Writing 33<br>
-Math 36<br>
-Reading 29<br>
-Science 32</div>
 
 
 
