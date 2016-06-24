@@ -30,6 +30,9 @@
 
 <%= resource_fields.label :response, 'D' %>
 <%= resource_fields.radio_button :answer_choice, 'd', section: section, question: index %>
+
+<%= resource_fields.label :response, 'E' %>
+<%= resource_fields.radio_button :answer_choice, 'e', section: section, question: index %>
  <br><br><br>
 <% else %>
 
@@ -37,13 +40,16 @@
 <%= resource_fields.radio_button :answer_choice, 'f', :checked => true, section: section, question: index %>
 
 <%= resource_fields.label :response, 'G' %>
-<%= resource_fields.radio_button :answer_choice, 'g', name: index, section: section, question: index %>
+<%= resource_fields.radio_button :answer_choice, 'g', section: section, question: index %>
 
 <%= resource_fields.label :response, 'H' %>
 <%= resource_fields.radio_button :answer_choice, 'h', section: section, question: index %>
 
 <%= resource_fields.label :response, 'J' %>
 <%= resource_fields.radio_button :answer_choice, 'j', section: section, question: index %>
+
+<%= resource_fields.label :response, 'K' %>
+<%= resource_fields.radio_button :answer_choice, 'k', section: section, question: index %>
  <br><br><br>
 <% end %>
 

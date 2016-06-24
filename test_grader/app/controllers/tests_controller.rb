@@ -1,10 +1,11 @@
 class TestsController < ApplicationController
 
   def index
-     if params[:user_id]
+    binding.pry
+     if current_user
 
-      @tests = User.find(params[:user_id]).tests.where(status: 'complete').uniq
-      @user = User.find(params[:user_id])
+      @tests = current_user.tests.where(status: 'complete').uniq
+      #@user = current_user
      
     else
       @tests = Test.all
@@ -16,7 +17,7 @@ class TestsController < ApplicationController
       redirect_to users_path, alert: "User not found."
     else
     @test = Test.new(user_id: params[:user_id])
-    @test.answers.build
+    @test.responses.build
     @format = Test.format
     end
     

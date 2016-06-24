@@ -1,4 +1,4 @@
-Hello <%= @user.name %>
+Hello <%= current_user.try(:name) %>
 <br>
 <br>
 
@@ -8,9 +8,9 @@ Previous Tests :
 <% @tests.each do |x| %>
 
 
-<%= link_to x.answer_key.code, user_test_path(@user.id, x.id) %>
+<%= link_to x.answer_key.code, user_test_path(current_user.id, x.id) %>
 <% end %>
 
 
 
-<%= link_to 'Take a New Test', new_user_test_path %>
+<%= link_to 'Take a New Test', new_user_test_path(current_user) %>

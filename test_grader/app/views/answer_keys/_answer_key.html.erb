@@ -1,0 +1,69 @@
+<% format.each do |key, value| %>
+<div class="<%= key.to_s%>">
+<strong><%= key.to_s.upcase %><br></strong>
+<% value.times do |x|  %>
+<% index = x + 1 %>
+<%= f.fields_for :answers, @test.answers.build do |resource_fields| %>
+
+
+<% section = key.to_s %>
+
+
+
+<% index = x + 1 %>
+
+<strong><%= index %></strong>  -   
+
+
+
+
+<% if index% 2 > 0 %>
+
+<%= resource_fields.label :answer, 'A' %>
+<%= resource_fields.radio_button :correct_answer, 'a', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'B' %>
+<%= resource_fields.radio_button :correct_answer, 'b', section: section,  question: index %>
+
+<%= resource_fields.label :answer, 'C' %>
+<%= resource_fields.radio_button :correct_answer, 'c', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'D' %>
+<%= resource_fields.radio_button :correct_answer, 'd', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'E' %>
+<%= resource_fields.radio_button :correct_answer, 'e', section: section, question: index %>
+
+
+ <br><br><br>
+<% else %>
+
+<%= resource_fields.label :answer, 'F' %>
+<%= resource_fields.radio_button :correct_answer, 'f', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'G' %>
+<%= resource_fields.radio_button :correct_answer, 'g', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'H' %>
+<%= resource_fields.radio_button :correct_answer, 'h', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'J' %>
+<%= resource_fields.radio_button :correct_answer, 'j', section: section, question: index %>
+
+<%= resource_fields.label :answer, 'K' %>
+<%= resource_fields.radio_button :correct_answer, 'k', section: section, question: index %>
+ <br><br><br>
+<% end %>
+
+
+
+<% end %></div>
+<% end %>
+<% end %>
+
+
+
+
+
+
+

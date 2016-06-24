@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: "welcome#welcome"
   resources :welcome, only: [:welcome, :home]
   resources :tests
+  resources :answer_keys
   resources :users, only: [:show, :index] do
     resources :tests, only: [:show, :index, :new, :edit]
   end
