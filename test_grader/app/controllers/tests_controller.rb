@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
 
   def index
-    binding.pry
+    
      if current_user
 
       @tests = current_user.tests.where(status: 'complete').uniq
@@ -29,7 +29,7 @@ class TestsController < ApplicationController
     
     @test.status = 'complete'
     @test.save
-    redirect_to test_path(@test)
+    redirect_to user_test_path(current_user, @test)
 
   end
 
@@ -37,7 +37,7 @@ class TestsController < ApplicationController
     
     if params[:user_id]
       @test = User.find(params[:user_id]).tests.find(params[:id])
-      binding.pry
+      
     else
       @test = Test.find(params[:id])
     end

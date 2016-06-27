@@ -4,13 +4,16 @@ Hello <%= current_user.try(:name) %>
 
 Previous Tests :
 <br>
-
+<% if @tests != [] %>
 <% @tests.each do |x| %>
 
 
 <%= link_to x.answer_key.code, user_test_path(current_user.id, x.id) %>
 <% end %>
+<% else %>
+<br>
+<%=  "You haven't taken any tests" %><br>
 
-
+<% end %>
 
 <%= link_to 'Take a New Test', new_user_test_path(current_user) %>
