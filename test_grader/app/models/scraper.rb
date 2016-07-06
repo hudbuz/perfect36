@@ -9,8 +9,10 @@ class Scraper
     answer_hash = doc.css("div#pf39 div.pc39 div.t")
     answer_hash.each do |answer|
         if answer.children.first.text.match(/\d+[.]{1}/)
-          answer_key.answers.create(question: answer.children.first.text.match(/\d+[.]{1}/).to_i
-    binding.pry
+          binding.pry
+          answer_key.answers.create(question: answer.children.first.text.match(/\d+[.]{1}/).to_i, correct_answer: 
+
+   
 
   end
   end

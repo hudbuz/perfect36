@@ -48,19 +48,6 @@ class Test < ActiveRecord::Base
 
 
 
-  def section_score(section, test)
-    section = test.sections.where(title: 'section')
-    answers = Answers.where(section_id: section.first.id, answer_key_id: test.answer_key.id)
-
-    score = 0
-    section.each do |s|
-      a = answers.find_by(question: s.question)
-      if s.answer_choice == s.answer_choice
-        score += 1
-      end
-    end
-  end
-
 
 
 

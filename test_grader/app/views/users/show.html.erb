@@ -7,13 +7,20 @@ Hello <%= @user.name %>
 
 Previous Tests :
 <br>
-<% @user.tests.each do |x| %>
-<div><strong> <%= x.answer_key.code %> <br></strong>
-  <%= x.section_score('english', x) %>
+<% @user.tests.uniq.each do |x| %>
+<div><strong> <%= link_to x.answer_key.code, user_test_path(@user,x) %> <br></strong>
+  English: 
+  <%= section_score x, 'english' %><br>
+  Math: 
+  <%= section_score x, 'math' %><br>
+  Reading:
+  <%= section_score x, 'reading' %><br>
+  Science: 
+  <%= section_score x, 'science' %><br>
   <% end %>
 
 
 
 
 
-<%= link_to 'Take a New Test', new_test_path %>
+<%= link_to 'Take a New Test', new_user_test_path(@user) %>

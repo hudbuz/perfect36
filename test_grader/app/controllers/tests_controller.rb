@@ -34,12 +34,21 @@ class TestsController < ApplicationController
   end
 
   def show
+
     
-    if params[:user_id]
-      @test = User.find(params[:user_id]).tests.find(params[:id])
+    if authorize User.find(params[:user_id])
+      @test = Test.includes(:responses).where(id: params[:id], user_id: params[:user_id]).first
+    
+
+      @answerkey = @test.answer_key
+      @sections = @answerkey.sections
+      @answers = @answerkey.answers
+      binding.pry
       
     else
-      @test = Test.find(params[:id])
+      @test = Test.find(params[:id]).includes(:responses)
+      
+      
     end
 
     

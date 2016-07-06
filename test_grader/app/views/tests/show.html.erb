@@ -1,17 +1,24 @@
-English Score
+<strong>English Score
 
-<%= section_score @test,'english' %>
-<br>
+<%= section_score @test,'english' %><br></strong>
 
-Math Score
-<%= section_score @test,'math' %>
-<br>
-
-Reading Score
-<%= section_score @test,'reading' %>
-<br>
+<%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'english').first} %>
 
 
-Science Score
-<%= section_score @test,'science' %>
-<br>
+<strong>Math Score
+<%= section_score @test,'math' %><br></strong>
+
+<%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'math').first} %>
+
+
+<strong>Reading Score<br>
+<%= section_score @test,'reading' %><br></strong>
+
+<%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'reading').first} %>
+
+
+
+<strong>Science Score<br>
+<%= section_score @test,'science' %><br></strong>
+
+<%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'science').first} %>

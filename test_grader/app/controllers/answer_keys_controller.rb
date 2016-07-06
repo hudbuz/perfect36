@@ -1,7 +1,7 @@
 class AnswerKeysController < ApplicationController
 
   def index
-     if params[:user_id]
+     if current_user
 
       @tests = AnswerKey.all
      
@@ -11,21 +11,22 @@ class AnswerKeysController < ApplicationController
   end
 
   def new
-    if params[:user_id] && !User.exists?(params[:user_id])
-      redirect_to users_path, alert: "User not found."
-    else
+    
     @test = AnswerKey.new
-    @test.answers.build
-    @format = AnswerKey.format
+    if authorize @test
+      @test.answers.build
+      @format = AnswerKey.format
+    else
+      redirect_to user_path(current_user), alert: "You don't have permission to create tests."
     end
     
   end
 
   def create
-    if params[:user_id] && !User.exists?(params[:user_id])
-      redirect_to users_path, alert: "User not found."
-    else
-    @test = AnswerKey.create(answer_key_params)
+    
+    @test = AnswerKey.new
+    if authorize @test
+    @test.update(answer_key_params)
     @test.save
     
     redirect_to tests_path

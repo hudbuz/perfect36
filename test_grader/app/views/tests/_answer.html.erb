@@ -1,0 +1,11 @@
+<% responses.where(section_id: section.id).each do |x| %>
+<%= x.question.to_s + ". " %>
+Your Response: <%= x.answer_choice %>
+
+Correct Response <%= s = section.answers.find_by(question: x.question).correct_answer %>
+<% if x.answer_choice == s %>
+<%= "✅" %>
+<% else %>
+<%= "❌" %>
+<% end  %><br>
+<% end %>

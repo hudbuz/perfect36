@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "welcome#welcome"
   resources :welcome, only: [:welcome, :home]
-  resources :tests
+  resources :tests, only: [:index]
   resources :answer_keys
-  resources :users, only: [:show, :index] do
-    resources :tests, only: [:show, :index, :new, :edit]
+  resources :users, only: [:index,:show] do
+    resources :tests, only: [:show, :index, :new, :create, :edit]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

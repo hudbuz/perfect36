@@ -1,0 +1,19 @@
+Student Performance
+
+<br><br>
+
+<% @users.each do |x| %>
+<strong><%= x.name %></strong>
+<% x.tests.uniq.each do |t| %>
+<%= t.code %>
+English: 
+  <%= section_score t, 'english' %><br>
+  Math: 
+
+  <%= section_score t, 'math' %><br>
+  Reading: 
+  <%= section_score t, 'reading' %><br>
+  Science: 
+  <%= section_score t, 'science' %><br>
+  <% end %><br>
+  <% end %>
