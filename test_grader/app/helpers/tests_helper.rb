@@ -4,7 +4,7 @@ module TestsHelper
     sec = Section.all.includes(:answers).where(title: section, answer_key_id: test.answer_key).first
     
     resp = Test.all.includes(:responses).where(answer_key_id: test.answer_key, id: test.id).first
-    binding.pry
+  
 
     score = 0
    

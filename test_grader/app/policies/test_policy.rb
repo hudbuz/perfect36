@@ -10,8 +10,9 @@ class TestPolicy < ApplicationPolicy
   end
 
   def show?
-  
-    user.admin? || user.owner_of?(test)
+    
+   user.admin? || user.id == record.user_id
+   end
 
   def edit?
 

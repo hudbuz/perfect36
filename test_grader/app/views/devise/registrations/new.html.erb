@@ -28,6 +28,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :tutor_id %><br />
+    <%= f.collection_select :tutor_id, User.all.where('role > 0'), :id, :name %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

@@ -11,15 +11,19 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :tutor_id])
   end
 
   def after_sign_up_path_for(resource)
-    tests_path
+    user_tests_path(current_user)
   end
 
   def after_sign_in_path_for(resource)
-    tests_path
+    if current_user.admin? || current_user.tutor?
+      user_path(current_user)
+    else
+    user_tests_path(current_user)
+  end
   end
 
   
