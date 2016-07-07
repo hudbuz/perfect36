@@ -2,6 +2,7 @@ class AnswerKey < ActiveRecord::Base
   has_many :sections
   has_many :answers
   has_many :tests
+  validates :code, uniqueness: true 
 
   accepts_nested_attributes_for :answers
 

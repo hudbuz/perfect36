@@ -2,19 +2,55 @@ class Scraper
 
   def davinci_code(path)
 
-    path
-    answer_key = AnswerKey.find_or_create_by(code: code)
+    code = path.split("/").last.gsub('.html', '')
+    pdf = path.gsub('.html', '.pdf')
+    
     doc = Nokogiri::HTML(open(path))
+
+    
+    answers = doc.css("div#page-container").first.css('div.t')
+    key = AnswerKey.create(code: code, url: pdf)
+    key.sections.build(title: 'english').save
+    key.sections.build(title: 'math').save
+    key.sections.build(title: 'reading').save
+    key.sections.build(title: 'science').save
+    
+    
+    answers.each do |a|
+      if !a.first.last.include?('fc0')
+      if a.children.text.to_i > 0
+      r = Answer.new(answer_key_id: key.id)
+      if a.first.last.include?('x2') || a.first.last.include?('x4')
+        r.section = key.sections.where(title: 'english').first
+        r.question = a.children.text.to_i
+        r.save
+      elsif a.first.last.include?('x6') || a.first.last.include?('x8')
+        r.section = key.sections.where(title: 'math').first
+        r.question = a.children.text.to_i
+        r.save
+      elsif a.first.last.include?('xa')
+      r.section = key.sections.where(title: 'reading').first
+        r.question = a.children.text.to_i
+        r.save
+      elsif a.first.last.include?('xc')
+        r.section = key.sections.where(title: 'science').first
+        r.question = a.children.text.to_i
+        r.save
+      end
+      else
+        r = Answer.last
+        r.update(correct_answer: a.children.text)
+        r.save
+      
+      end
+    end
+    end
+        
+    binding.pry
     #####2015-16, all of the old test models have the same div ids so they only ones that will need special treatment are the newest ones
-    answer_hash = doc.css("div#pf39 div.pc39 div.t")
-    answer_hash.each do |answer|
-        if answer.children.first.text.match(/\d+[.]{1}/)
-          binding.pry
-          answer_key.answers.create(question: answer.children.first.text.match(/\d+[.]{1}/).to_i, correct_answer: 
 
-   
 
-  end
+
   end
 
 
