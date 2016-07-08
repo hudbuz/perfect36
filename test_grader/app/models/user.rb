@@ -12,4 +12,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   enum role: [:normal, :tutor, :admin]
+
+  def taken_test?(answer_key)
+
+    codes = []
+    self.try(:tests).each do |x|
+      codes << x.answer_key.code
+    end
+
+    if codes.include?(answer_key.code)
+      true
+    else
+      false
+    end
+
+  end
 end

@@ -13,12 +13,14 @@ class TestsController < ApplicationController
   end
 
   def new
+
     if params[:user_id] && !User.exists?(params[:user_id])
       redirect_to users_path, alert: "User not found."
     else
     @test = Test.new(user_id: params[:user_id])
     @test.responses.build
     @format = Test.format
+    @answerkey = AnswerKey.find_by(code: params[:commit])
     end
     
   end

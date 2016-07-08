@@ -7,7 +7,7 @@
 <br>
 
 <% if current_user.normal? %>
-Your tutor is <%= current_user.tutor.name %>
+Your tutor is <%= current_user.tutor.name %><br><br>
 
 
 Previous Tests :
@@ -44,7 +44,19 @@ Previous Tests :
 
 
 
+<br><br>
+
+Take a new test!<br>
+<% @answerkeys.each do |x| %>
+<% if !@user.taken_test?(x) %>
+<%= form_for @test, url: {action: 'new', :controller=>"tests"} do |f| %>
+<input type="hidden" name="user_id" value="<%= current_user.id %>">
+<%= f.submit "#{x.code}" %>
+<% end %>
+<% end %>
+<% end %>
 
 
 
-<%= link_to 'Take a New Test', new_user_test_path(@user) %>
+
+
