@@ -3,7 +3,7 @@ class Test < ActiveRecord::Base
   has_many :sections
   has_many :answers, :through => :sections
   has_many :responses
-  has_many :users, :through => :responses
+  belongs_to :user
  
   accepts_nested_attributes_for :responses
 

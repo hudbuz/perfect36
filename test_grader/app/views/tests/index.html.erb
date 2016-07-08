@@ -1,4 +1,7 @@
 
+
+
+<%= @user.name %>
 <% if current_user.normal? %>
 
 Your tutor is <%= current_user.tutor.name %>
@@ -13,6 +16,7 @@ Previous Tests :
 
 
 <%= link_to x.answer_key.code, user_test_path(current_user.id, x.id) %><br>
+Score <%= test_score x %>
 <% end %>
 <% else %>
 <br>

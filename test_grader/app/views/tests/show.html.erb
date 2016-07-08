@@ -1,24 +1,38 @@
-<strong>English Score
+<h2><%= @test.user.name %>'s Test</h2>
+  <h3><%= @code %></h3>
 
-<%= section_score @test,'english' %><br></strong>
+
+</strong><h4>Score: <%= test_score @test %></h4></strong>
+
+
+<strong>English Raw Score
+
+<%= a = section_score @test,'english' %><br>
+English Scaled Score: <%= a.to_f/75.to_f*36 %><br> </strong>
 
 <%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'english').first} %>
 
 
-<strong>Math Score
-<%= section_score @test,'math' %><br></strong>
+<strong>Math Raw Score
+
+<%= b = section_score @test,'math' %><br>
+Math Scaled Score: <%= b.to_f/60.to_f*36 %><br> </strong>
 
 <%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'math').first} %>
 
 
-<strong>Reading Score<br>
-<%= section_score @test,'reading' %><br></strong>
+<strong>Reading Raw Score
+
+<%= c = section_score @test,'reading' %><br>
+Reading Scaled Score: <%= c.to_f/40.to_f*36 %><br> </strong>
 
 <%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'reading').first} %>
 
 
 
-<strong>Science Score<br>
-<%= section_score @test,'science' %><br></strong>
+<strong>Science Raw Score
+
+<%= d = section_score @test,'science' %><br>
+Science Scaled Score: <%= d.to_f/40.to_f*36 %><br> </strong>
 
 <%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'science').first} %>

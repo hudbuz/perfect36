@@ -5,10 +5,10 @@ class TestsController < ApplicationController
      if current_user
 
       @tests = current_user.tests.where(status: 'complete').uniq
-      #@user = current_user
+      @user = User.find(params[:user_id])
      
     else
-      @tests = Test.all
+      redirect_to login_path, alert: "You must be logged in to perform that action."
     end
   end
 
@@ -43,8 +43,9 @@ class TestsController < ApplicationController
       @answerkey = @test.answer_key
       @sections = @answerkey.sections
       @answers = @answerkey.answers
+      @code = @answerkey.code
      
-      
+      binding.pry
     
       
     end

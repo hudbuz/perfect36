@@ -9,10 +9,11 @@ class UsersController < ApplicationController
   end
 
   def show
+
     if User.find(params[:id]) == current_user
       @user = current_user
     else
-      if authorize current_user
+      if authorize User.find(params[:id])
         @user = User.find(params[:id])
       end
 

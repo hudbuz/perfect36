@@ -19,6 +19,37 @@ module TestsHelper
   end
 
 
+
+  def test_score(test)
+
+    sections = ['english', 'math', 'reading', 'science']
+    numbers = [75, 60, 40, 40]
+    raw = sections.map do |x| 
+      section_score test, x
+    end
+    scaled = []
+    counter = 0
+    raw.each do |r|
+      
+      scaled<< r.to_f/numbers[counter].to_f*36
+      counter += 1
+    end
+    average = scaled.inject(:+)/4
+   
+    if average.ceil - average > 0.50.to_f
+      average.ceil
+    else
+      average.floor
+    end
+
+
+   
+
+
+
+  end
+
+
   
       
   
