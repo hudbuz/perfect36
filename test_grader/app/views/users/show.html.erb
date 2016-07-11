@@ -1,5 +1,5 @@
 
-<br><br><br>
+<br>
 <% if current_user != @user %>
  <%= @user.name.capitalize %>
  <% end %>
@@ -13,7 +13,9 @@ Your tutor is <%= current_user.tutor.name %><br><br>
 Previous Tests :
 <br>
 <% current_user.tests.uniq.each do |x| %>
-<div><strong> <%= link_to x.answer_key.code, user_test_path(@user,x) %> <br></strong>
+<div><strong> <%= link_to x.answer_key.code, user_test_path(@user,x) %> <br>
+  Overall Score: <%= test_score x %>/36<br><br>
+Number of Questions Answered Correctly</strong><br>
   English: 
   <%= section_score x, 'english' %><br>
   Math: 

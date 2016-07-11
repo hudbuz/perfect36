@@ -16,6 +16,7 @@ class AnswerKeysController < ApplicationController
     if authorize @test
       @test.answers.build
       @format = AnswerKey.format
+      
     else
       redirect_to user_path(current_user), alert: "You don't have permission to create tests."
     end
@@ -31,6 +32,14 @@ class AnswerKeysController < ApplicationController
     
     redirect_to tests_path
     end
+  end
+
+  def url
+    binding.pry
+    @answerkey = AnswerKey.find_by(code: params[:url])
+    Launchy.open("/Users/hudsonbuzby/Development/code/projects/test_grader/test_grader/app/assets/files/pdf2html/#{@answerkey.code}.pdf")
+    #render "/Users/hudsonbuzby/Development/code/projects/test_grader/test_grader/app/assets/files/pdf2html/#{@answerkey.code}.html"
+
   end
 
   

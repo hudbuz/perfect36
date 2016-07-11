@@ -21,6 +21,8 @@ class TestsController < ApplicationController
     @test.responses.build
     @format = Test.format
     @answerkey = AnswerKey.find_by(code: params[:commit])
+    Launchy.open("/Users/hudsonbuzby/Development/code/projects/test_grader/test_grader/app/assets/files/pdf2html/#{@answerkey.code}.pdf")
+
     end
     
   end
