@@ -49,7 +49,7 @@ class TestsController < ApplicationController
       @answers = @answerkey.answers
       @code = @answerkey.code
      
-      binding.pry
+
     
       
     end

@@ -6,12 +6,14 @@
 <br>
 <br>
 
-<% if current_user.normal? %>
+<% if current_user.normal?  %>
 Your tutor is <%= current_user.tutor.name %><br><br>
 
 
 Previous Tests :
 <br>
+
+<% if current_user.tests != [] %>
 <% current_user.tests.uniq.each do |x| %>
 <div><strong> <%= link_to x.answer_key.code, user_test_path(@user,x) %> <br>
   Overall Score: <%= test_score x %>/36<br><br>
@@ -25,28 +27,8 @@ Number of Questions Answered Correctly</strong><br>
   Science: 
   <%= section_score x, 'science' %><br>
   <% end %>
-  <% else %>
-
-  Your Students: <br>
-  <br>
-  <% current_user.students.each do |s| %>
- 
-
-  <%= link_to s.name, user_tests_path(s) %><br>
-
-  <% s.tests.uniq.each do |x| %>
- 
-  <div><strong> <%= link_to x.answer_key.code, user_test_path(s,x) %> <br></strong>
-  <strong>Test Score <%= test_score x %></strong>
- 
-  <% end %><br><br>
   <% end %>
 
-  <% end %>
-
-
-
-<br><br>
 
 Take a new test!<br>
 <% @answerkeys.each do |x| %>
@@ -57,6 +39,52 @@ Take a new test!<br>
 <% end %>
 <% end %>
 <% end %>
+  <% elsif @user == current_user %>
+  Your Students: <br>
+  <br>
+  <% current_user.students.each do |s| %>
+   <%= link_to s.name, user_tests_path(s) %><br>
+<% if s.normal? %>
+
+  <%= form_for @user, url: {action: 'update', :controller=>"users"} do |f| %>
+<input type="hidden" name="user_id" value="<%= s.id %>">
+<%= f.submit "Make user a tutor" %>
+<% end %>
+Previous Tests: <br>
+  <% s.tests.uniq.each do |x| %>
+ 
+  <div><strong> <%= link_to x.answer_key.code, user_test_path(s,x) %> <br></strong>
+  <strong>Test Score <%= test_score x %></strong>
+ 
+  <% end %><br><br>
+  <% end %>
+  <% end %>
+
+
+  <% else %>
+  Your tutor is <%= @user.tutor.name %><br><br>
+
+
+Previous Tests :
+<br>
+<% @user.tests.uniq.each do |x| %>
+<div><strong> <%= link_to x.answer_key.code, user_test_path(@user,x) %> <br>
+  Overall Score: <%= test_score x %>/36<br><br>
+Number of Questions Answered Correctly</strong><br>
+  English: 
+  <%= section_score x, 'english' %><br>
+  Math: 
+  <%= section_score x, 'math' %><br>
+  Reading:
+  <%= section_score x, 'reading' %><br>
+  Science: 
+  <%= section_score x, 'science' %><br>
+  <% end %>
+
+<% end %>
+
+<br><br>
+
 
 
 

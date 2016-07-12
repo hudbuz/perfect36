@@ -1,7 +1,7 @@
 class Test < ActiveRecord::Base
   belongs_to :answer_key
-  has_many :sections
-  has_many :answers, :through => :sections
+
+  
   has_many :responses
   belongs_to :user
  
@@ -34,9 +34,7 @@ class Test < ActiveRecord::Base
       end
       self.responses << response
       response.save
-      if !self.sections.include?(response.section)
-        self.sections << response.section
-      end
+      
       
 
     end

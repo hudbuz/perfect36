@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-
-  has_many :responses
-  has_many :tests, :through => :responses
+  has_many :tests
+  has_many :responses, through: :tests
+  
   has_many :students, class_name: "User",
                           foreign_key: "tutor_id"
  

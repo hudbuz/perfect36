@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "welcome#welcome"
   resources :welcome, only: [:welcome, :home]
-  resources :tests, only: [:index]
+  resources :tests
   resources :answer_keys
-  resources :users, only: [:index,:show] do
+  resources :users, only: [:index,:show, :update] do
     resources :tests, only: [:show, :index, :new, :create, :edit]
   end
   post '/users/:id/tests/new' => 'tests#new'

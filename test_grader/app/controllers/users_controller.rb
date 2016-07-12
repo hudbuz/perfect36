@@ -24,4 +24,12 @@ class UsersController < ApplicationController
   @answerkeys = AnswerKey.all
   end
 
+  def update
+    authorize current_user
+    binding.pry
+    @user = User.find(params[:user_id])
+    @user.update(role: 1)
+    redirect_to user_path(current_user)
+  end
+
 end

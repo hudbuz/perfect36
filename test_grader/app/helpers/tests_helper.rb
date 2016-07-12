@@ -9,7 +9,7 @@ module TestsHelper
     score = 0
    
     resp.responses.where(section_id: sec.id).each do |s|
-    
+     
       a = sec.answers.find_by(question: s.question)
       if a.correct_answer == s.answer_choice
         score += 1
