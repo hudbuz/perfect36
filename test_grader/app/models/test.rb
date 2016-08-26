@@ -4,14 +4,14 @@ class Test < ActiveRecord::Base
   
   has_many :responses
   belongs_to :user
- 
-  accepts_nested_attributes_for :responses
 
 
   def self.format
     format = {:english => 75, :math => 60, :reading => 40, :science => 40}
     
   end
+
+  
 
 
   def responses_attributes=(responses_attributes)
@@ -38,12 +38,10 @@ class Test < ActiveRecord::Base
       
 
     end
-
-
+ 
 
 
   end
-
 
 
 

@@ -19,6 +19,11 @@ class TestPolicy < ApplicationPolicy
     user.admin? || user.owner?(test)
   end
 
+  def index
+
+    user.admin? || user.owner?(test)
+  end
+
 
 
 

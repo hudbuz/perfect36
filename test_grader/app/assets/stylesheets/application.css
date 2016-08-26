@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+div #new_tests {
+
+  float: left;
+}
+
+ul  {
+  border-left: 30;
+  border-color: black;
+  float: left;
+}
+
+div #navbar {
+  background-color: black;
+  color: green;
+  float: left;
+}
+
+h3 {
+  float: left;
+}

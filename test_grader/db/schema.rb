@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706192505) do
+ActiveRecord::Schema.define(version: 20160818201702) do
 
   create_table "answer_keys", force: :cascade do |t|
     t.string   "code"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 20160706192505) do
     t.string   "status",        default: "incomplete"
     t.integer  "answer_key_id"
     t.integer  "user_id"
+    t.integer  "english_score"
+    t.integer  "math_score"
+    t.integer  "reading_score"
+    t.integer  "science_score"
+    t.integer  "total_score"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,6 +80,8 @@ ActiveRecord::Schema.define(version: 20160706192505) do
     t.string   "name"
     t.integer  "role",                   default: 0
     t.integer  "tutor_id"
+    t.string   "provider"
+    t.integer  "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

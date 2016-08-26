@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   root to: "welcome#welcome"
-  resources :welcome, only: [:welcome, :home]
+  resources :welcome, only: [:welcome, :home, :get_scores]
   resources :tests
   resources :answer_keys
   resources :users, only: [:index,:show, :update] do
     resources :tests, only: [:show, :index, :new, :create, :edit]
   end
   post '/users/:id/tests/new' => 'tests#new'
+  get 'get_scores' => 'tests#scores'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

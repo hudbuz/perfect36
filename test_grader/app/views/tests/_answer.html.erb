@@ -1,5 +1,8 @@
+
+<ol id="<% section.title %>">
 <% responses.where(section_id: section.id).each do |x| %>
-<%= x.question.to_s + ". " %>
+<li>
+
 Your Response: <%= x.answer_choice %>
 
 Correct Response <%= s = section.answers.find_by(question: x.question).correct_answer %>
@@ -9,3 +12,5 @@ Correct Response <%= s = section.answers.find_by(question: x.question).correct_a
 <%= "❌" %>
 <% end  %><br>
 <% end %>
+</li>
+</ol>

@@ -1,5 +1,6 @@
 module TestsHelper
   def section_score(test, section)
+   
     
     sec = Section.all.includes(:answers).where(title: section, answer_key_id: test.answer_key).first
     
@@ -7,10 +8,10 @@ module TestsHelper
   
 
     score = 0
-   
+    answers = sec.answers
     resp.responses.where(section_id: sec.id).each do |s|
      
-      a = sec.answers.find_by(question: s.question)
+      a = answers.find { |a| a.question == s.question}
       if a.correct_answer == s.answer_choice
         score += 1
       end
@@ -22,12 +23,15 @@ module TestsHelper
 
   def test_score(test)
 
-    sections = ['english', 'math', 'reading', 'science']
+
     numbers = [75, 60, 40, 40]
-    raw = sections.map do |x| 
-      section_score test, x
-    end
+    raw = []
+    raw << test.english_score
+    raw << test.math_score
+    raw << test.reading_score
+    raw << test.science_score
     scaled = []
+
     counter = 0
     raw.each do |r|
       
@@ -48,6 +52,21 @@ module TestsHelper
 
 
   end
+
+
+def get_scores(test)
+
+    test.update(:english_score => section_score(test, 'english'))
+    test.update(:math_score => section_score(test, 'math'))
+    test.update(:reading_score => section_score(test, 'reading'))
+    test.update(:science_score => section_score(test, 'science'))
+    
+    test.update(:total_score => test_score(test))
+    
+
+  end
+
+
 
 
   

@@ -1,19 +1,58 @@
 Student Performance
 
-<br><br>
 
-<% @users.each do |x| %>
-<strong><%= x.name %></strong>
-<% x.tests.uniq.each do |t| %>
-<%= t.code %>
-English: 
-  <%= section_score t, 'english' %><br>
-  Math: 
 
-  <%= section_score t, 'math' %><br>
-  Reading: 
-  <%= section_score t, 'reading' %><br>
-  Science: 
-  <%= section_score t, 'science' %><br>
-  <% end %><br>
-  <% end %>
+
+<div id="users"></div>
+
+
+<script type="text/javascript">
+$(function() {
+
+    $.get('/users.json', function(data) {
+      var users = data
+
+      for (i = 0; i < users.length; i ++) {
+        $('#users').append('<strong><h3><ul id="user'+users[i]["id"]+ '">Name: '+ users[i]["name"]+ '</ul><h3></strong>')
+        $('#user'+users[i]["id"]).append('<h5>Email: '+ users[i]["email"]+ '</h5>')
+        $('#user'+users[i]["id"]).append('<h5>Id: '+ users[i]["id"]+ '</h5>')
+        if (users[i]["tests"].length > 0) {
+      
+          for (c = 0; c < users[i]['tests'].length; c ++ ){
+
+            $('#user'+users[i]["id"]).append('<h4 class="'+users[i]['id']+'" id="test'+ users[i]["tests"][c]["id"]+'">Test Number:'+ users[i]['tests'][c]["answer_key_id"] + '</h4>')
+            
+          }
+        }
+      }
+     
+    })
+
+    $(document).on('click','h4', function() {
+        
+          
+    var uid = event.target.classList[0]
+
+    var tid = event.target.id.slice(4)
+      $.get('/users/'+ uid+ '.json', function(data){
+        
+      var tests = data["tests"]
+
+      for (t = 0; t < tests.length; t++) {
+        
+        if (tests[t]["id"].toString() === tid) {
+          debugger
+        $('#test'+tid).append('<li>English Score: '+tests[t]["english_score"] + '</li>')
+        $('#test'+tid).append('<li>Math Score: '+tests[t]["math_score"] + '</li>')
+        $('#test'+tid).append('<li>Reading Score: '+tests[t]["reading_score"] + '</li>')
+        $('#test'+tid).append('<li>Science Score: '+tests[t]["science_score"] + '</li>')
+        $('#test'+tid).append('<li>Total Score: '+tests[t]["total_score"] + '</li>')
+      }}
+      })
+    })
+
+ 
+})
+
+
+</script>

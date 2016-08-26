@@ -27,6 +27,11 @@ gem 'cocaine'
 gem 'climate_control', '~> 0.0.3'
 gem 'pundit'
 gem 'launchy'
+gem 'signet'
+gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem 'active_model_serializers'
+gem 'sidekiq'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

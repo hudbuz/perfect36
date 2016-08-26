@@ -5,6 +5,7 @@ class TestsController < ApplicationController
      if current_user
 
       @tests = current_user.tests.where(status: 'complete').uniq
+
       @user = User.find(params[:user_id])
      
     else
@@ -28,11 +29,12 @@ class TestsController < ApplicationController
   end
 
   def create
-
+    binding.pry
     @test = Test.create(test_params)
     
     @test.status = 'complete'
     @test.save
+    
     redirect_to user_test_path(current_user, @test)
 
   end
@@ -40,23 +42,25 @@ class TestsController < ApplicationController
   def show
 
     @test = Test.find(params[:id])
-    if authorize @test
-      @test = Test.includes(:responses).where(id: params[:id], user_id: params[:user_id]).first
-    
 
+    if authorize @test
+     # @test = Test.includes(:responses).where(id: params[:id], user_id: params[:user_id]).first
+    
+     
       @answerkey = @test.answer_key
       @sections = @answerkey.sections
       @answers = @answerkey.answers
       @code = @answerkey.code
-     
+      respond_to do |format|
+      format.html {render :show}
 
-    
-      
+      format.json {render json: @test}
+    end
     end
 
-    
-
   end
+
+ 
 
   
 
