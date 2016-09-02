@@ -14,18 +14,22 @@ class User < ActiveRecord::Base
 
   enum role: [:normal, :tutor, :admin]
 
-  def taken_test?(answer_key)
+  def taken_test?
 
     codes = []
     self.try(:tests).each do |x|
       codes << x.answer_key.code
     end
+    not_taken = []
+    keys = AnswerKey.all
 
-    if codes.include?(answer_key.code)
-      true
-    else
-      false
-    end
+    keys.each do |k|
+      if !codes.include?(k.code)
+        not_taken << k
+      end
+
+
+    not_taken
 
   end
 
