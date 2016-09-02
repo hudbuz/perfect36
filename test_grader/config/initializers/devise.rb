@@ -239,8 +239,7 @@ Devise.setup do |config|
   config.sign_out_via = :delete
   
   #config.omniauth :google_oauth2, '970898820110-t2d2md2orjv12vccp7d0dj4oqp4oll9r.apps.googleusercontent.com', 'tsBHaUvif5bFR3uyCZqL_iJ3', { }
-  config.omniauth :facebook, '1161562000531973', '7c9e0be581e4b03cdf98dd863044ef6c', callback_url: "http://localhost:3000/users/auth/facebook",
-  :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}
+  config.omniauth :facebook, '1161562000531973', '7c9e0be581e4b03cdf98dd863044ef6c'
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

@@ -33,3 +33,9 @@ div #navbar {
 h3 {
   float: left;
 }
+
+div .section {
+  float: left;
+  padding-left: 20;
+  border: 10;
+}

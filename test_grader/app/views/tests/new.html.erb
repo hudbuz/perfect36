@@ -1,11 +1,22 @@
 Take a Test
 
 
-
+<div id="newTest">
 <%= form_for @test do |f| %>
-Test Code: <%= @answerkey.code %>
+<div id="answerKey">Test Code: <%= @answerkey.code %><br>
+
+  <div id="takenAt"></div>
+  <div id="totalScore"></div>
+
+
+
+
 <%= f.hidden_field  :answer_key_id, value: @answerkey.id %><br><br><br>
 <%= f.hidden_field :user_id, value: current_user.id %>
+
+<div id="hiddenAnswerKeyId" type="hidden" value="<%= @answerkey.id %>"></div><br><br><br>
+<div id="hiddenUserId" type="hidden" value="<%=current_user.id%>"></div>
+</div>
 
 
 <%= render partial:'/tests/test', locals:{format: @format, f: f} %>
@@ -14,3 +25,7 @@ Test Code: <%= @answerkey.code %>
 
 <%= f.submit %>
 <% end %>
+
+<button id="create">Submit</button>
+</div>
+

@@ -1,6 +1,8 @@
 <% format.each do |key, value| %>
-<div class="<%= key.to_s%>">
-<strong><%= key.to_s.upcase %><br></strong>
+<div id="<%= key.to_s%>" class="section">
+
+<strong><h2><%= key.to_s.upcase %></h2><br></strong>
+  <h3 id="<%= key.to_s %>Score"></h3><br><br><br>
 <% value.times do |x|  %>
 <% index = x + 1 %>
 <%= f.fields_for :responses, @test.responses.build do |resource_fields| %>
@@ -18,35 +20,36 @@
 
 
 <% if index% 2 > 0 %>
-
+<div id="question">
 <%= resource_fields.label :response, 'A' %>
-<%= resource_fields.radio_button :answer_choice, 'a', section: section, question: index, checked: true %>
+<%= resource_fields.radio_button :answer_choice, 'a', section: section, question: index%>
 
 <%= resource_fields.label :response, 'B' %>
 <%= resource_fields.radio_button :answer_choice, 'b', section: section,  question: index %>
 
 <%= resource_fields.label :response, 'C' %>
-<%= resource_fields.radio_button :answer_choice, 'c', section: section, question: index %>
+<%= resource_fields.radio_button :answer_choice, 'c', section: section,checked: true, question: index %>
 
 <%= resource_fields.label :response, 'D' %>
 <%= resource_fields.radio_button :answer_choice, 'd', section: section, question: index %>
 
 <%= resource_fields.label :response, 'E' %>
 <%= resource_fields.radio_button :answer_choice, 'e', section: section, question: index %>
-
+</div>
 
 
  <br><br><br>
 <% else %>
 
+<div id="question" >
 <%= resource_fields.label :response, 'F' %>
-<%= resource_fields.radio_button :answer_choice, 'f', :checked => true, section: section, question: index %>
+<%= resource_fields.radio_button :answer_choice, 'f', question: index,  section: section %>
 
 <%= resource_fields.label :response, 'G' %>
 <%= resource_fields.radio_button :answer_choice, 'g', section: section, question: index %>
 
 <%= resource_fields.label :response, 'H' %>
-<%= resource_fields.radio_button :answer_choice, 'h', section: section, question: index %>
+<%= resource_fields.radio_button :answer_choice, 'h', checked: true, section: section, question: index %>
 
 <%= resource_fields.label :response, 'J' %>
 <%= resource_fields.radio_button :answer_choice, 'j', section: section, question: index %>
@@ -54,12 +57,13 @@
 <%= resource_fields.label :response, 'K' %>
 <%= resource_fields.radio_button :answer_choice, 'k', section: section, question: index %>
  <br><br><br>
+ </div>
 <% end %>
 
 
 
+<% end %>
 <% end %></div>
-<% end %>
 <% end %>
 
 
