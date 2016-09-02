@@ -14,16 +14,9 @@
 
 
 <div id="tests" ></div>
-  <hr style="height:120pt; visibility:hidden;" />
-<div id="new_tests"><% @answerkeys.each do |x| %>
-<% if !@user.taken_test?(x) %>
-<div id="new_tests"> <%= form_for @test, url: {action: 'new', :controller=>"tests"} do |f| %>
-<input type="hidden" name="user_id" value="<%= current_user.id %>">
-<%= f.submit "#{x.code}" %>
-<% end %></div>
-<% end %>
-<% end %>
-</div>
+
+</div><br><br>
+ <%= button_to "Take New Test", new_user_test_path(@user) %>
 
 
 

@@ -39,3 +39,10 @@ div .section {
   padding-left: 20;
   border: 10;
 }
+
+form .button_to {
+  display: block;
+
+  clear: both;
+
+}
