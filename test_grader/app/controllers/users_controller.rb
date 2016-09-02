@@ -18,8 +18,6 @@ class UsersController < ApplicationController
   
     if @user == current_user
       @user = current_user
-      @test = Test.new
-      @answerkeys = AnswerKey.all
       respond_to do |format|
       format.html {render :show}
       format.json {render json: @user}

@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
       if !codes.include?(k.code)
         not_taken << k
       end
+    end
 
 
     not_taken

@@ -1,29 +1,31 @@
 Take a Test
 
 
-<div id="newTest">
+<div id="newTests">
 <%= form_for @test do |f| %>
-<div id="answerKey">Test Code: <%= @answerkey.code %><br>
 
+<div id="answerKey">Test Code: <%= collection_select(:test, :answer_key_id, @available, :id, :code) %><br><br></div>
   <div id="takenAt"></div>
   <div id="totalScore"></div>
 
 
 
 
-<%= f.hidden_field  :answer_key_id, value: @answerkey.id %><br><br><br>
-<%= f.hidden_field :user_id, value: current_user.id %>
 
-<div id="hiddenAnswerKeyId" type="hidden" value="<%= @answerkey.id %>"></div><br><br><br>
+
 <div id="hiddenUserId" type="hidden" value="<%=current_user.id%>"></div>
-</div>
+
+
+
+
+
 
 
 <%= render partial:'/tests/test', locals:{format: @format, f: f} %>
 
 
 
-<%= f.submit %>
+<% f.submit %>
 <% end %>
 
 <button id="create">Submit</button>
