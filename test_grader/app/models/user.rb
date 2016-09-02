@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
     codes = []
     self.try(:tests).each do |x|
+      
       codes << x.answer_key.code
     end
     not_taken = []

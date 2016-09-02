@@ -35,8 +35,9 @@ function createTest() {
 
     var params = {}
     params["test"] = {}
-    params["test"]["user_id"] = $('#hiddenUserId').attributes.value.value
-    params["test"]["answer_key_id"] = $('#test_answer_key_id').value
+    params["test"]["user_id"] = $('#hiddenUserId').attr('value')
+ 
+    params["test"]["answer_key_id"] = $('#test_answer_key_id')[0].value
 
     params["test"]["responses_attributes"]= {}
 
@@ -69,6 +70,8 @@ function createTest() {
      
       newTest.fillInScores();
     })
+
+    $('#create').hide()
 
 })
 
