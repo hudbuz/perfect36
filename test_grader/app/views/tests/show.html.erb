@@ -1,4 +1,7 @@
 <h2><%= @test.user.name %>'s Test</h2>
+<div id="hiddenUserId" value="<%=@test.user.id%>"></div>
+<div id="hiddenTestId" value="<%=@test.id%>"></div>
+<div id="hiddenAnswerKeyId" value="<%=@test.answer_key.id%>"></div>
   <h3><%= @code %></h3>
 <% if @test.total_score == nil %>
 <% get_scores @test %>
@@ -9,39 +12,77 @@
 </strong><h4>Score: <%= @test.total_score %></h4></strong>
 
 
-<div id='english'><strong>English Raw Score 
-
+<ol id='english'>
+  <strong>English Raw Score 
+<div id='englishScore'></div>
 <%= a = @test.english_score %><br>
 English Scaled Score: <%= a.to_f/75.to_f*36 %><br> </strong>
 
-<%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'english').first} %>
 
-</div>
 
-<div id="math">
+</ol>
+
+<ol id="math">
 <strong>Math Raw Score
+  <div id='mathScore'></div>
 
 <%= b = @test.math_score %><br>
 Math Scaled Score: <%= b.to_f/60.to_f*36 %><br> </strong>
 
-<%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'math').first} %>
-</div>
+
+</ol>
 
 
-<div id="reading">
+<ol id="reading">
+  <div id='readingScore'></div>
 <strong>Reading Raw Score
 
 <%= c = @test.reading_score %><br>
 Reading Scaled Score: <%= c.to_f/40.to_f*36 %><br> </strong>
 
-<%= render partial:'tests/answer', locals:{responses: @test.responses, section: @sections.where(title: 'reading').first} %>
-</div>
 
-<div id="science">
+</ol>
+
+<ol id="science">
+  <div id='scienceScore'></div>
 <strong>Science Raw Score
 
 <%= d = @test.science_score %><br>
 Science Scaled Score: <%= d.to_f/40.to_f*36 %><br> </strong>
 
-<%= render partial:'tests/answer', locals:{ responses: @test.responses, section: @sections.where(title: 'science').first} %>
-</div>
+
+</ol>
+
+
+<script type="text/javascript">
+  $(function() {
+    var userId = $('#hiddenUserId').attr('value')
+    var testId = $('#hiddenTestId').attr('value')
+
+    $.get(testId+'.json', function(data) {
+
+
+      
+      var resp = data["responses"]
+      for (i = 0; i < resp.length; i ++) {
+        if (resp[i]["score"] === 0) {
+        $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'</li>'+'<a href="#">❌ Incorrect </a><div type="hidden">'+resp[i]["section"]["id"]+'</div>')
+      }
+      else {
+          $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'     Correct </li><div type="hidden">'+resp[i]["section"]["id"]+'</div>')
+      }
+      }
+    } )
+
+
+
+
+
+
+  })
+
+
+
+
+
+</script>
