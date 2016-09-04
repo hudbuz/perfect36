@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :welcome, only: [:welcome, :home, :get_scores]
   resources :tests
   resources :answer_keys
+  resources :answers
   resources :users, only: [:index,:show, :update] do
     resources :tests, only: [:show, :index, :new, :create, :edit]
   end

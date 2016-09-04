@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   createTest();
-
+  getAnswer();
 
 
 })
@@ -78,6 +78,31 @@ function createTest() {
 
 }
 
+
+function getAnswer() {
+
+  $(document).on('click', 'button', function(event) {
+
+    
+    event.preventDefault();
+    answer = {}
+    answer["question"] = $(this.parentElement).index()
+    answer["section"] = $(this.parentElement.parentElement)[0].id
+    answer["akey"] = $('#hiddenAnswerKeyId').attr('value')
+
+    $.get('/answers', answer, function(data) {
+      var correct = data["correct_answer"]
+    
+   
+
+      $('#'+answer["section"]).children('li')[answer["question"]-1].children[2].innerHTML = "Correct Answer = " + correct
+
+    })
+
+  })
+
+
+}
 
 
 
