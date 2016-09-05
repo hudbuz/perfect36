@@ -96,7 +96,7 @@ function getAnswer() {
    
 
       $('#'+answer["section"]).children('li')[answer["question"]-1].children[2].innerHTML = "Correct Answer = " + correct
-
+      delete answer
     })
 
   })

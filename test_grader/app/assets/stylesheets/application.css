@@ -46,3 +46,8 @@ form .button_to {
   clear: both;
 
 }
+
+ol {
+
+  float: left;
+}
