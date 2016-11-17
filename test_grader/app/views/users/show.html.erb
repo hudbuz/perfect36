@@ -1,24 +1,25 @@
 
 <br><br>
 
-<!DOCTYPE html>
-<html>
+
 <head>
 <title><%=@user.name%></title>
 <div id="userId"><% @user.id %></div>
 </head>
 <body>
 
-<h1></h1>
+<div id="welcome_container">
+<h1 id="welcome_user"></h1>
 <h3 id="tutorName">Your tutor is <%= User.find(@user.tutor_id).name %></h3><br><br>
+</div>
 
+<div id="tests" class="col-sm-9" ></div>
 
-<div id="tests" ></div>
+<br><br>
 
-</div><br><br>
- <%= button_to "Take New Test", new_user_test_path(@user) %>
-
-
+<div id="new_test_button">
+ <%= button_to "Take New Test", new_user_test_path(@user), class: 'btn btn-primary btn-lg' %>
+</div>
 
 
 <script type="text/javascript">
@@ -27,27 +28,27 @@ $(function() {
 
 
   var path = $('#home a').attr('href')
-  
+
   $.get(path + '.json', function(data) {
 
-    $('h1').html('Welcome '+ data["name"])
+    $('#welcome_user').html('Welcome '+ data["name"])
     var tests = data["tests"]
 
     if (tests !== []) {
       $('#tests').html("")
-      
+
       $('#tests').append('<h3>Previous Tests:</h3>')
-     
+
 
       for (i = 0; i < tests.length; i ++) {
-         $('#tests').append('<h4><ul id="'+ tests[i]["id"]+'">'+'Answer Key' + tests[i]["answer_key_id"] + '</li></h4>' )
-      
+         $('#tests').append('<h4><div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'">'+'Answer Key' + tests[i]["answer_key_id"] + '</div></h4>' )
+
         $('#'+tests[i]["id"]).append('<li>English Score: ' + tests[i]["english_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li>Math Score: '+ tests[i]["math_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li>Reading Score: ' + tests[i]["reading_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li>Science Score: ' + tests[i]["science_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li>Total Score: ' + tests[i]["total_score"]+'</li>')
-        $('#'+tests[i]["id"]).append('<a href="/users/'+data["id"]+'/tests/'+tests[i]["id"]+'">View Test</a>')
+        $('#'+tests[i]["id"]).append('<a href="/users/'+data["id"]+'/tests/'+tests[i]["id"]+'">View Full Test Report</a>')
     }}
 
   })
@@ -58,11 +59,3 @@ $(function() {
 </script>
 
 </body>
-</html>
-
-
-
-
-
-
-

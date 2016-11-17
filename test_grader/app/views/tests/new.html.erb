@@ -1,10 +1,10 @@
-Take a Test
 
+<div id="test_frame" class="new_tests col-lg-8"><iframe src="https://docs.google.com/viewer?srcid=0B2G5qRkXjY7rUEdJM0Nmbm5rYXM&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="600px" height="600px"></iframe></div>
 
-<div id="newTests">
+<div id="newTests" class='test-container new_tests col-lg-4'>
 <%= form_for @test do |f| %>
-
-<div id="answerKey">Test Code: <%= collection_select(:test, :answer_key_id, @available, :id, :code) %><br><br></div>
+<h2>Take a New Test</h2>
+<div id="answerKey">Test Code: <%= collection_select(:test, :answer_key_id, @available, :id, :code, {prompt: 'Select Test'}, {:onchange => 'changeIframe()'}) %><br><br></div>
   <div id="takenAt"></div>
   <div id="totalScore"></div>
 
@@ -30,4 +30,3 @@ Take a Test
 
 <button id="create">Submit</button>
 </div>
-

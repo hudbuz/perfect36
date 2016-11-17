@@ -14,9 +14,10 @@ Previous Tests :
 <% if @tests != [] %>
 <% @tests.each do |x| %>
 
-
+<div class="finished_test">
 <%= link_to x.answer_key.code, user_test_path(current_user.id, x.id) %><br>
 Score <%= test_score x %>
+</div>
 <% end %>
 <% else %>
 <br>
@@ -24,10 +25,7 @@ Score <%= test_score x %>
 
 <% end %>
 <br><br>
+<div class="newTests">
 <%= link_to 'Take a New Test', new_user_test_path(current_user) %>
 
-
-
-
-
-</script>
+</div>

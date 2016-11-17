@@ -4,6 +4,7 @@ $(document).ready(function() {
   getAnswer();
 
 
+
 })
 
 function Test (id, english_score, math_score, reading_score, science_score, total_score, completed) {
@@ -19,7 +20,7 @@ function Test (id, english_score, math_score, reading_score, science_score, tota
 
 Test.prototype.fillInScores = function() {
   $('#takenAt').html('Completed at: ' + this.completed)
- 
+
   $('#englishScore').html('English score: '+ this.english_score)
   $('#mathScore').html('Math score: '+ this.math_score)
   $('#readingScore').html('Reading score: '+ this.reading_score)
@@ -30,32 +31,32 @@ Test.prototype.fillInScores = function() {
 function createTest() {
 
   $('#create').on('click', function(event){
- 
+
     event.preventDefault()
 
     var params = {}
     params["test"] = {}
     params["test"]["user_id"] = $('#hiddenUserId').attr('value')
- 
+
     params["test"]["answer_key_id"] = $('#test_answer_key_id')[0].value
 
     params["test"]["responses_attributes"]= {}
 
     var secs = ['english', 'math', 'reading', 'science']
     for (i = 0; i < secs.length; i ++) {
-   
+
     params["test"]["responses_attributes"][secs[i]]= {}
     var data = $('#'+secs[i]).children('div')
 
     for (s = 0; s < data.length; s ++) {
-                
+
       params["test"]["responses_attributes"][secs[i]][s+1] =  null
       for (d = 0; d < data[s].children.length; d ++) {
-        
-    
+
+
         if (data[s].children[d].checked === true) {
           params["test"]["responses_attributes"][secs[i]][s+1] = data[s].children[d].id.slice(-1)
-        } 
+        }
 
     }}
 
@@ -65,9 +66,9 @@ function createTest() {
    var posting = $.post('/tests', params)
 
     posting.done(function(data) {
-      
+
       var newTest = new Test(data["id"], data["english_score"], data["math_score"], data["reading_score"], data["science_score"], data["total_score"], data["created_at"])
-     
+
       newTest.fillInScores();
     })
 
@@ -83,7 +84,7 @@ function getAnswer() {
 
   $(document).on('click', 'button', function(event) {
 
-    
+
     event.preventDefault();
     answer = {}
     answer["question"] = $(this.parentElement).index()
@@ -92,8 +93,8 @@ function getAnswer() {
 
     $.get('/answers', answer, function(data) {
       var correct = data["correct_answer"]
-    
-   
+
+
 
       $('#'+answer["section"]).children('li')[answer["question"]-1].children[2].innerHTML = "Correct Answer = " + correct
       delete answer
@@ -102,6 +103,14 @@ function getAnswer() {
   })
 
 
+}
+
+function changeIframe(){
+  debugger
+  console.log('hello')
+  $.get('answer_keys/'+event.target.selectedOptions[0].value, function(resp){
+    
+  })
 }
 
 
@@ -131,6 +140,3 @@ function getAnswer() {
 
 
 // make test scores built into model  DONE
-
-
-

@@ -1,12 +1,26 @@
 
 
-<div id="navbar">
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+  <a href="#" class="navbar-brand">ACT Grader</a>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
 <% if current_user %>
-<%= 'Logged in as ' + current_user.name %><br><br>
-<div id='home'><%= link_to 'User Home', user_path(current_user) %></div>
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+<ul class="nav navbar-nav navbar-right">
+<li><%= 'Logged in as ' + current_user.name %></li>
+</ul>
+<ul class="nav navbar-nav">
 
-<% end %><br><br><br>
+<li id='home'><%= link_to 'Home', user_path(current_user) %></li>
+<li id="logout"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+</ul>
+
+<% end %>
+</div>
 
 </div>
+</nav>
+<% if alert %>
+<div class="alert"><%= alert %></div>
+<% end %>

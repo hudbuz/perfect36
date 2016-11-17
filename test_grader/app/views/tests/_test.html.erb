@@ -14,13 +14,13 @@
 
 <% index = x + 1 %>
 
-<strong><%= index %></strong>  -   
+<strong><%= index %></strong>  -
 
 
 
 
 <% if index% 2 > 0 %>
-<div id="question">
+<div id="question" class="field form-group">
 <%= resource_fields.label :response, 'A' %>
 <%= resource_fields.radio_button :answer_choice, 'a', section: section, question: index%>
 
@@ -41,7 +41,7 @@
  <br><br><br>
 <% else %>
 
-<div id="question" >
+<div id="question" class="field form-group">
 <%= resource_fields.label :response, 'F' %>
 <%= resource_fields.radio_button :answer_choice, 'f', question: index,  section: section %>
 
@@ -65,10 +65,3 @@
 <% end %>
 <% end %></div>
 <% end %>
-
-
-
-
-
-
-
