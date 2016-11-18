@@ -106,13 +106,104 @@ function getAnswer() {
 }
 
 function changeIframe(){
-  debugger
-  console.log('hello')
-  $.get('answer_keys/'+event.target.selectedOptions[0].value, function(resp){
-    
+
+
+  answer_key = {id: event.target.selectedOptions[0].value}
+  $.get('/answer_keys/'+event.target.selectedOptions[0].value,answer_key, function(resp){
+
+    $('#newTestFrame')[0].src = resp.url
+
+
   })
 }
 
+function sectionShift() {
+
+  this.event.preventDefault();
+    if (event.currentTarget.id === 'rightSection'){
+      $('#activeSection')[0].attributes.value.value ++
+    }
+    else {
+      $('#activeSection')[0].attributes.value.value --
+    }
+    for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
+      if (i == $('#activeSection')[0].attributes.value.value ){
+    
+
+        $('.test-container').children().children('.section')[i].style.display = ''
+      }
+      else {
+        console.log($('.test-container').children().children('.section')[i])
+
+        $('.test-container').children().children('.section')[i].style.display = "none";
+      }
+    }
+
+
+}
+
+jQuery.fn.blindLeftToggle = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: parseFloat(this.css('marginLeft')) < 0 ? 0 : -this.outerWidth()
+    }, jQuery.speed(duration, easing, complete));
+};
+
+/*!
+ * @param {number} duration - The speed amount
+ * @param {string} easing - The easing method
+ * @param {function} complete - A callback function
+**/
+jQuery.fn.blindLeftOut = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: -this.outerWidth()
+    }, jQuery.speed(duration, easing, complete));
+};
+
+/*!
+ * @param {number} duration - The speed amount
+ * @param {string} easing - The easing method
+ * @param {function} complete - A callback function
+**/
+jQuery.fn.blindLeftIn = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: 0
+    }, jQuery.speed(duration, easing, complete));
+};
+
+
+
+/*!
+ * @param {number} duration - The speed amount
+ * @param {string} easing - The easing method
+ * @param {function} complete - A callback function
+**/
+jQuery.fn.blindRightToggle = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: -(parseFloat(this.css('marginLeft'))) < 0 ? 0 : this.outerWidth()
+    }, jQuery.speed(duration, easing, complete));
+};
+
+/*!
+ * @param {number} duration - The speed amount
+ * @param {string} easing - The easing method
+ * @param {function} complete - A callback function
+**/
+jQuery.fn.blindRightOut = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: this.outerWidth()
+    }, jQuery.speed(duration, easing, complete));
+};
+
+/*!
+ * @param {number} duration - The speed amount
+ * @param {string} easing - The easing method
+ * @param {function} complete - A callback function
+**/
+jQuery.fn.blindRightIn = function (duration, easing, complete) {
+    return this.animate({
+        marginLeft: 0
+    }, jQuery.speed(duration, easing, complete));
+};
 
 
 

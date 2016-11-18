@@ -9,6 +9,9 @@
 <% if @test.total_score == nil %>
 <% get_scores @test %>
 <% end %>
+<div id="test_frame" class="new_tests col-lg-8"><iframe id="showTestFrame" src="" width="600px" height="600px"></iframe></div>
+
+<div class="test-container new_tests col-lg-4 well well-sm">
 </strong><h4 id="totalScore">Score: <%= @test.total_score %></h4></strong>
 
 
@@ -43,7 +46,7 @@
 
 
 </ol>
-
+</div>
 
 <script type="text/javascript">
   $(function() {
@@ -59,7 +62,7 @@
       $('#readingScore').html(data["reading_score"])
       $('#scienceScore').html(data["science_score"])
       $('#totalScore').html(data["total_score"])
-      
+
       var resp = data["responses"]
       for (i = 0; i < resp.length; i ++) {
         if (resp[i]["score"] === 0) {
@@ -69,6 +72,9 @@
           $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'     Correct<div type="hidden" vale="'+resp[i]["section"]["id"]+'></div </li>')
       }
       }
+      $.get('/answer_keys/'+data['answer_key_id'], function(resp){
+        $('#showTestFrame')[0].src = resp.url
+      })
     } )
 
 

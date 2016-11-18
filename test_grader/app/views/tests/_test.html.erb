@@ -2,7 +2,7 @@
 <div id="<%= key.to_s%>" class="section">
 
 <strong><h2><%= key.to_s.upcase %></h2><br></strong>
-  <h3 id="<%= key.to_s %>Score"></h3><br><br><br>
+  <h3 id="<%= key.to_s %>Score"></h3><br>
 <% value.times do |x|  %>
 <% index = x + 1 %>
 <%= f.fields_for :responses, @test.responses.build do |resource_fields| %>
@@ -15,9 +15,6 @@
 <% index = x + 1 %>
 
 <strong><%= index %></strong>  -
-
-
-
 
 <% if index% 2 > 0 %>
 <div id="question" class="field form-group">
@@ -38,7 +35,7 @@
 </div>
 
 
- <br><br><br>
+ <br>
 <% else %>
 
 <div id="question" class="field form-group">
@@ -56,12 +53,10 @@
 
 <%= resource_fields.label :response, 'K' %>
 <%= resource_fields.radio_button :answer_choice, 'k', section: section, question: index %>
- <br><br><br>
+
  </div>
+ <br>
 <% end %>
-
-
-
 <% end %>
 <% end %></div>
 <% end %>
