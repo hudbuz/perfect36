@@ -12,8 +12,12 @@
 <h1 id="welcome_user"></h1>
 <h3 id="tutorName">Your tutor is <%= User.find(@user.tutor_id).name %></h3><br><br>
 </div>
-
-<div id="tests" class="col-sm-9" ></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+<div id='viz'></div>
+<div id="tests" class="col-sm-9" >
+</div>
 
 <br><br>
 
@@ -51,6 +55,85 @@ $(function() {
         $('#'+tests[i]["id"]).append('<a href="/users/'+data["id"]+'/tests/'+tests[i]["id"]+'">View Full Test Report</a>')
     }}
 
+    if (tests !== []) {
+
+      var sample_data = []
+      for (i = 0; i < tests.length; i ++){
+        if (tests[i]['total_score'] !== null){
+        var english = {name: tests[i]['answer_key_id'], section: 'english', value: tests[i]['english_score']}
+        var math = {name: tests[i]['answer_key_id'], section: 'math', value: tests[i]['math_score']}
+        var reading = {name: tests[i]['answer_key_id'], section: 'reading', value: tests[i]['reading_score']}
+        var science = {name: tests[i]['answer_key_id'], section: 'science', value: tests[i]['science_score']}
+        var total = {name: tests[i]['answer_key_id'], section: 'total', value: tests[i]['total_score']}
+        sample_data.push(english, math, reading, science, total)
+      }}
+
+var visualization = d3plus.viz()
+  .container("#viz")
+  .data(sample_data)
+  .id(["name", "section"])
+  .size("value")
+  .type("radar")
+  .draw();
+
+    // // set the dimensions and margins of the graph
+    // var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    //     width = 960 - margin.left - margin.right,
+    //     height = 500 - margin.top - margin.bottom;
+    //
+    // // parse the date / time
+    // var parseTime = d3.timeParse("%d-%b-%y");
+    //
+    // // set the ranges
+    // var x = d3.scaleTime().range([0, width]);
+    // var y = d3.scaleLinear().range([height, 0]);
+    //
+    // // define the line
+    // var valueline = d3.line()
+    //     .x(function(d) { return x(d.created_at); })
+    //     .y(function(d) { return y(d.total_score); });
+    //
+    // // append the svg obgect to the body of the page
+    // // appends a 'group' element to 'svg'
+    // // moves the 'group' element to the top left margin
+    // var svg = d3.select("body").append("svg")
+    //     .attr("width", width + margin.left + margin.right)
+    //     .attr("height", height + margin.top + margin.bottom)
+    //   .append("g")
+    //     .attr("transform",
+    //           "translate(" + margin.left + "," + margin.top + ")");
+    //
+    //
+    //
+    //   // format the data
+    //   tests.forEach(function(d) {
+    //       d.created_at = d3.timeParse(d.created_at);
+    //       d.total_score = d.total_score;
+    //       debugger
+    //
+    //   });
+    //
+    //   // Scale the range of the data
+    //   x.domain(d3.extent(tests, function(d) { return d.created_at; }));
+    //   y.domain([0, d3.max(tests, function(d) { return 36; })]);
+    //
+    //   // Add the valueline path.
+    //   svg.append("path")
+    //       .data([tests])
+    //       .attr("class", "line")
+    //       .attr("d", valueline);
+    //
+    //   // Add the X Axis
+    //   svg.append("g")
+    //       .attr("transform", "translate(0," + height + ")")
+    //       .call(d3.axisBottom(x));
+    //
+    //   // Add the Y Axis
+    //   svg.append("g")
+    //       .call(d3.axisLeft(y));
+
+
+}
   })
 
 })
