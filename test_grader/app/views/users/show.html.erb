@@ -64,7 +64,7 @@ $(function() {
 	 wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
 	 opacityArea: 0.35, 	//The opacity of the area of the blob
 	 dotRadius: 4, 			//The size of the colored circles of each blog
-	 opacityCircles: 0.1, 	//The opacity of the circles of each blob
+	 opacityCircles: 0.4, 	//The opacity of the circles of each blob
 	 strokeWidth: 2, 		//The width of the stroke around each blob
 	 roundStrokes: false,	//If true the area and stroke will follow a round path (cardinal-closed)
 	 color: d3.scale.category10()	//Color function
@@ -373,13 +373,13 @@ $(function() {
 
 
       for (i = 0; i < tests.length; i ++) {
-         $('#tests').append('<h4><div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'">'+'Answer Key' + tests[i]["answer_key_id"] + '</div></h4>' )
+         $('#tests').append('<div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'"><p class="lead">'+'Answer Key' + tests[i]["answer_key_id"] + '</p></div>' )
 
-        $('#'+tests[i]["id"]).append('<li>English Score: ' + tests[i]["english_score"]+'</li>')
-        $('#'+tests[i]["id"]).append('<li>Math Score: '+ tests[i]["math_score"]+'</li>')
-        $('#'+tests[i]["id"]).append('<li>Reading Score: ' + tests[i]["reading_score"]+'</li>')
-        $('#'+tests[i]["id"]).append('<li>Science Score: ' + tests[i]["science_score"]+'</li>')
-        $('#'+tests[i]["id"]).append('<li>Total Score: ' + tests[i]["total_score"]+'</li>')
+        $('#'+tests[i]["id"]).append('<li class="list-group-item">English Score: ' + tests[i]["english_score"]+'</li>')
+        $('#'+tests[i]["id"]).append('<li class="list-group-item">Math Score: '+ tests[i]["math_score"]+'</li>')
+        $('#'+tests[i]["id"]).append('<li class="list-group-item">Reading Score: ' + tests[i]["reading_score"]+'</li>')
+        $('#'+tests[i]["id"]).append('<li class="list-group-item">Science Score: ' + tests[i]["science_score"]+'</li>')
+        $('#'+tests[i]["id"]).append('<li class="list-group-item">Total Score: ' + tests[i]["total_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<a href="/users/'+data["id"]+'/tests/'+tests[i]["id"]+'">View Full Test Report</a>')
     }}
 
