@@ -86,7 +86,7 @@ function getAnswer() {
 
 
     event.preventDefault();
-    answer = {}
+    var answer = {}
     answer["question"] = $(this.parentElement).index()
     answer["section"] = $(this.parentElement.parentElement)[0].id
     answer["akey"] = $('#hiddenAnswerKeyId').attr('value')
@@ -97,7 +97,7 @@ function getAnswer() {
 
 
       $('#'+answer["section"]).children('li')[answer["question"]-1].children[2].innerHTML = "Correct Answer = " + correct
-      delete answer
+  
     })
 
   })
@@ -128,7 +128,7 @@ function sectionShift() {
     }
     for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
       if (i == $('#activeSection')[0].attributes.value.value ){
-    
+
 
         $('.test-container').children().children('.section')[i].style.display = ''
       }

@@ -66,7 +66,7 @@
       var resp = data["responses"]
       for (i = 0; i < resp.length; i ++) {
         if (resp[i]["score"] === 0) {
-        $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'   ❌<button type="button"> See Answer </button><div type="hidden" value="'+resp[i]["section"]["id"]+'"></div><div id="answer"></div>'+'</li>')
+        $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'   ❌   <button class="btn btn-danger"> See Answer </button><div type="hidden" value="'+resp[i]["section"]["id"]+'"></div><div id="answer"></div>'+'</li>')
       }
       else {
           $('#'+resp[i].section.title).append('<li>Your Response: '+ resp[i]["answer_choice"]+'     Correct<div type="hidden" vale="'+resp[i]["section"]["id"]+'></div </li>')
