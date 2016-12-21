@@ -1,7 +1,7 @@
 
 <ol id="<% section.title %> sections">
 <% responses.where(section_id: section.id).each do |x| %>
-<li>
+<li class="list-group-item">
 
 Your Response: <%= x.answer_choice %>
 
