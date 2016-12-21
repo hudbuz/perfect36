@@ -1,11 +1,12 @@
 
-<div id="test_frame" class="new_tests col-lg-8"><iframe id="newTestFrame" src="https://docs.google.com/viewer?srcid=0B2G5qRkXjY7rUEdJM0Nmbm5rYXM&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="600px" height="600px"></iframe></div>
+<div id="test_frame" class="new_tests col-md-8"><iframe id="newTestFrame" src="https://docs.google.com/viewer?srcid=0B2G5qRkXjY7rUEdJM0Nmbm5rYXM&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="500px" height="600px"></iframe></div>
 
-<div id="newTests" class='test-container new_tests col-lg-4 well well-sm'>
+<div id="newTests" class='test-container new_tests col-md-4 panel panel-info'>
 <%= form_for @test do |f| %>
+<div class="panel-title">
 <h2>Take a New Test</h2>
-<div id="answerKey">Test Code: <%= collection_select(:test, :answer_key_id, @available, :id, :code, {prompt: 'Select Test'}, {:onchange => 'changeIframe()', class: "form-control"}) %><br><br></div>
-<a id="leftSection" onclick="sectionShift()" href="#"><span class="glyphicon glyphicon-arrow-left"></span></a>
+<div id="answerKey">Test Code: <%= collection_select(:test, :answer_key_id, @available, :id, :code, {prompt: 'Select Test'}, {:onchange => 'changeIframe()', class: "form-control"}) %><br><br></div></div>
+<a id="leftSection" onclick="sectionShift()" href="#"><span class="glyphicon glyphicon-arrow-left glyphicon-lg"></span></a>
  <a id="rightSection" onclick="sectionShift()" href="#"><span class="glyphicon glyphicon-arrow-right glyphicon-lg"></span></a>
  <div id="activeSection" type="hidden" value=0></div>
 
@@ -14,18 +15,9 @@
 
 
 
-
-
-
-
 <div id="hiddenUserId" type="hidden" value="<%=current_user.id%>"></div>
 
-
-
-
-
-
-
+<div class="panel-body">
 <%= render partial:'/tests/test', locals:{format: @format, f: f} %>
 
 
@@ -33,7 +25,8 @@
 <% f.submit %>
 <% end %>
 
-<button id="create">Submit</button>
+<button id="create" class="btn btn-primary">Submit</button>
+</div>
 </div>
 
 <script>

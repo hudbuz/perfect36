@@ -15,9 +15,8 @@
 <% index = x + 1 %>
 
 <strong><%= index %></strong>  -
-
 <% if index% 2 > 0 %>
-<div id="question" class="field form-group list-group-item">
+<div id="question" class="field form-group">
 <%= resource_fields.label :response, 'A' %>
 <%= resource_fields.radio_button :answer_choice, 'a', section: section, question: index%>
 
