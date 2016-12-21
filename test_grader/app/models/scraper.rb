@@ -1,21 +1,21 @@
 class Scraper
 
-  def davinci_code(path)
+  def davinci_code(path, name, url)
 
-    code = path.split("/").last.gsub('.html', '')
-    pdf = path.gsub('.html', '.pdf')
-    
+    code = name
+    location = url
+
     doc = Nokogiri::HTML(open(path))
 
-    
+
     answers = doc.css("div#page-container").first.css('div.t')
-    key = AnswerKey.create(code: code, url: pdf)
+    key = AnswerKey.create(code: code, url: location)
     key.sections.build(title: 'english').save
     key.sections.build(title: 'math').save
     key.sections.build(title: 'reading').save
     key.sections.build(title: 'science').save
     
-    
+
     answers.each do |a|
       if !a.first.last.include?('fc0')
       if a.children.text.to_i > 0
@@ -44,11 +44,11 @@ class Scraper
           r.update(correct_answer: a.children.text)
           r.save
         end
-      
+
       end
     end
     end
-        
+
     binding.pry
     #####2015-16, all of the old test models have the same div ids so they only ones that will need special treatment are the newest ones
 
