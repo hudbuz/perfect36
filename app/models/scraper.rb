@@ -14,8 +14,8 @@ class Scraper
     key.sections.build(title: 'math').save
     key.sections.build(title: 'reading').save
     key.sections.build(title: 'science').save
-    
 
+    binding.pry
     answers.each do |a|
       if !a.first.last.include?('fc0')
       if a.children.text.to_i > 0
