@@ -28,7 +28,7 @@ class Scraper
         r.section = key.sections.where(title: 'math').first
         r.question = a.children.text.to_i
         r.save
-      elsif a.first.last.include?('x9') || a.first.last.include?('x11 ')
+      elsif a.first.last.include?('x9 ') || a.first.last.include('x11 ')
       r.section = key.sections.where(title: 'reading').first
         r.question = a.children.text.to_i
         r.save
@@ -38,9 +38,12 @@ class Scraper
         r.save
       end
       else
+        binding.pry
         problems = ["L", "O", "V", "I"]
         r = Answer.last
         if !problems.include?(a.children.text)
+          if a.children.text == "O" || "V"
+
           r.update(correct_answer: a.children.text)
           r.save
         end
