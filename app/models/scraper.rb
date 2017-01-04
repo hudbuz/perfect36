@@ -24,7 +24,7 @@ class Scraper
         r.section = key.sections.where(title: 'english').first
         r.question = a.children.text.to_i
         r.save
-      elsif a.first.last.include?('x6') || a.first.last.include?('8 ') || a.first.last.include?('x3')
+      elsif a.first.last.include?('x6') || a.first.last.include?('x8 ') || a.first.last.include?('x3') || a.first.last.include?('xe')
         r.section = key.sections.where(title: 'math').first
         r.question = a.children.text.to_i
         r.save
@@ -32,7 +32,7 @@ class Scraper
       r.section = key.sections.where(title: 'reading').first
         r.question = a.children.text.to_i
         r.save
-      elsif a.first.last.include?('xc') || a.first.last.include?('x10 ')
+      elsif a.first.last.include?('xc ') || a.first.last.include?('x10 ')
         r.section = key.sections.where(title: 'science').first
         r.question = a.children.text.to_i
         r.save
