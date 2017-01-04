@@ -28,7 +28,7 @@ class Scraper
         r.section = key.sections.where(title: 'math').first
         r.question = a.children.text.to_i
         r.save
-      elsif a.first.last.include?('xa ') || a.first.last.include('xf ')
+      elsif a.first.last.include?('xa ') || a.first.last.include?('xf ')
       r.section = key.sections.where(title: 'reading').first
         r.question = a.children.text.to_i
         r.save
