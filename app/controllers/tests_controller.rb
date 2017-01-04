@@ -33,7 +33,7 @@ class TestsController < ApplicationController
 
 
 
-
+    binding.pry
     @test = Test.create(test_params)
     @test.responses_attributes=params["test"]["responses_attributes"]
 

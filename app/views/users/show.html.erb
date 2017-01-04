@@ -30,7 +30,7 @@
 <body>
 
 <div id="welcome_container">
-<h1 id="welcome_user"></h1>
+<h1 id="welcome_user">Welcome <%= @user.name %></h1>
 <h3 id="tutorName">Your tutor is <%= User.find(@user.tutor_id).name %></h3><br><br>
 </div>
 
@@ -45,9 +45,14 @@
 
 <br><br>
 
+<% if @available != nil %>
 <div id="new_test_button">
+
  <%= button_to "Take New Test", new_user_test_path(@user), class: 'btn btn-primary btn-lg' %>
 </div>
+<% else %>
+<div class="display text-center">You have completed all available tests. Check back soon for new additions. </div>
+<% end %>
 
 
 <script type="text/javascript">

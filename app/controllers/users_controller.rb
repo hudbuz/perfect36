@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def index
     if authorize current_user
       @users = User.all.where('role < 2')
-      
+
       respond_to do |f|
         f.html {render :index}
         f.json {render json: @users}
@@ -15,16 +15,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-  
+
     if @user == current_user
       @user = current_user
+      @available = @user.taken_test?
       respond_to do |format|
       format.html {render :show}
       format.json {render json: @user}
     end
-    
-   
-   
+
+
+
     else
       if authorize User.find(params[:id])
         @user = User.find(params[:id])
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
       format.json {render json: @user}
     end
 
-      
+
       end
 
   end

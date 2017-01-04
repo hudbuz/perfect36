@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   has_many :tests
   has_many :responses, through: :tests
-  
+
   has_many :students, class_name: "User",
                           foreign_key: "tutor_id"
- 
+
   belongs_to :tutor, class_name: "User"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,10 +14,13 @@ class User < ActiveRecord::Base
 
   enum role: [:normal, :tutor, :admin]
 
-  def taken_test?
 
+
+  def taken_test?
+########fix this method; probs should be a scope
+binding.pry
     codes = []
-    self.try(:tests).each do |x|
+    self.try(:tests).where(status: 'complete').each do |x|
 
       codes << x.answer_key.code
     end
@@ -37,15 +40,12 @@ class User < ActiveRecord::Base
 
 
   def self.from_omniauth(auth)
-    
+
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  
+
      user.email = auth.info.email
      user.password = Devise.friendly_token[0,20]
 
    end
 end
 end
-
-
-

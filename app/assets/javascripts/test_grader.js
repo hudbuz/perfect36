@@ -46,6 +46,7 @@ function createTest() {
     for (i = 0; i < secs.length; i ++) {
 
     params["test"]["responses_attributes"][secs[i]]= {}
+    debugger
     var data = $('#'+secs[i]).children('div')
 
     for (s = 0; s < data.length; s ++) {
@@ -97,7 +98,7 @@ function getAnswer() {
 
 
       $('#'+answer["section"]).children('li')[answer["question"]-1].children[2].innerHTML = "Correct Answer = " + correct
-  
+
     })
 
   })
