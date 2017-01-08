@@ -4,14 +4,15 @@
       This app allows you take take real ACT tests in a timed environment and immediately view your score.
     </p>
 
-<div class="row-fluid">
+<div class="row-fluid text-center">
 <div class="span6">
-<%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-success" %>
+<%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-success btn-lg" %>
 </div>
 <div class="span6">
-<%= link_to 'Sign In', new_user_session_path, class: "btn btn-success" %>
+<%= link_to 'Sign In', new_user_session_path, class: "btn btn-success btn-lg" %>
 </div>
-</div>
+
 <!--  -->
 
 <%= link_to image_tag('http://i.stack.imgur.com/ZW4QC.png'), user_facebook_omniauth_authorize_path %>
+</div>
