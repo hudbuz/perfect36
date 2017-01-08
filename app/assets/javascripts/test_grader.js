@@ -108,7 +108,7 @@ function getAnswer() {
 
 function changeIframe(){
 
-
+console.log('hit')
   answer_key = {id: event.target.selectedOptions[0].value}
   $.get('/answer_keys/'+event.target.selectedOptions[0].value,answer_key, function(resp){
 
