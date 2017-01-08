@@ -122,6 +122,8 @@ function sectionShift() {
   console.log('hit')
   this.event.preventDefault();
     if (event.currentTarget.id === 'rightSection'){
+      console.log('hit')
+      console.log($('#activeSection'))
       $('#activeSection')[0].attributes.value.value ++
     }
     else {
