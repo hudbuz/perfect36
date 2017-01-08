@@ -38,19 +38,19 @@
 <% else %>
 
 <div id="question" class="field form-group">
-<%= resource_fields.label :response, 'F' %>
+<%= resource_fields.label :response, 'F', class: 'radio-inline' %>
 <%= resource_fields.radio_button :answer_choice, 'f', question: index,  section: section %>
 
-<%= resource_fields.label :response, 'G' %>
+<%= resource_fields.label :response, 'G', class: 'radio-inline' %>
 <%= resource_fields.radio_button :answer_choice, 'g', section: section, question: index %>
 
-<%= resource_fields.label :response, 'H' %>
+<%= resource_fields.label :response, 'H', class: 'radio-inline' %>
 <%= resource_fields.radio_button :answer_choice, 'h', checked: true, section: section, question: index %>
 
-<%= resource_fields.label :response, 'J' %>
+<%= resource_fields.label :response, 'J', class: 'radio-inline' %>
 <%= resource_fields.radio_button :answer_choice, 'j', section: section, question: index %>
 
-<%= resource_fields.label :response, 'K' %>
+<%= resource_fields.label :response, 'K', class: 'radio-inline' %>
 <%= resource_fields.radio_button :answer_choice, 'k', section: section, question: index %>
 
  </div>
