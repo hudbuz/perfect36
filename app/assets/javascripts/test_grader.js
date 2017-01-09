@@ -129,6 +129,7 @@ function sectionShift() {
     else {
       $('#activeSection')[0].attributes.value.value --
     }
+    debugger
     for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
       debugger
       if (i == $('#activeSection')[0].attributes.value.value ){
