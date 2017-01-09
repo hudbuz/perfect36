@@ -119,27 +119,26 @@ function changeIframe(){
 }
 
 function sectionShift() {
-  console.log('hit')
+
   this.event.preventDefault();
     if (event.currentTarget.id === 'rightSection'){
-      console.log('hit')
-      console.log($('#activeSection')[0].attributes.value.value)
+
       $('#activeSection')[0].attributes.value.value ++
     }
     else {
       $('#activeSection')[0].attributes.value.value --
     }
-    debugger
-    for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
-      debugger
+
+    for (i = 0; i < $('.test-container').children().children('.panel-body').children('.section').length; i ++) {
+    
       if (i == $('#activeSection')[0].attributes.value.value ){
 
-        $('.test-container').children().children('.section')[i].style.display = ''
+        $('.test-container').children().children('.panel-body').children('.section')[i].style.display = ''
       }
       else {
-        console.log($('.test-container').children().children('.section')[i])
+        console.log($('.test-container').children().children('.panel-body').children('.section')[i])
 
-        $('.test-container').children().children('.section')[i].style.display = "none";
+        $('.test-container').children().children('.panel-body').children('.section')[i].style.display = "none";
       }
     }
 
