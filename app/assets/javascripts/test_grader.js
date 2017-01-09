@@ -17,6 +17,7 @@ function Test (id, english_score, math_score, reading_score, science_score, tota
   this.completed = completed
 }
 
+const Times = [45, 60, 40, 40]
 
 Test.prototype.fillInScores = function() {
   $('#takenAt').html('Completed at: ' + this.completed)
@@ -130,13 +131,12 @@ function sectionShift() {
     }
 
     for (i = 0; i < $('.test-container').children().children('.panel-body').children('.section').length; i ++) {
-    
+
       if (i == $('#activeSection')[0].attributes.value.value ){
 
         $('.test-container').children().children('.panel-body').children('.section')[i].style.display = ''
       }
       else {
-        console.log($('.test-container').children().children('.panel-body').children('.section')[i])
 
         $('.test-container').children().children('.panel-body').children('.section')[i].style.display = "none";
       }
@@ -144,6 +144,42 @@ function sectionShift() {
 
 
 }
+
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date())
+  var seconds = Math.floor((t / 1000) % 60)
+  var minutes = Math.floor((t / 1000 / 60) % 60)
+
+  return {
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var times = {english: 45, math: 60, reading: 35, science: 35}
+  endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
+  var clock = document.getElementById(id)
+
+  var minutesSpan = clock.querySelector('.minutes')
+  var secondsSpan = clock.querySelector('.seconds')
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+//
+// var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+// initializeClock('clockdiv', deadline);
 
 jQuery.fn.blindLeftToggle = function (duration, easing, complete) {
     return this.animate({

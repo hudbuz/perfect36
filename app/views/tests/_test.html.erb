@@ -1,6 +1,9 @@
 <% format.each do |key, value| %>
 <div id="<%= key.to_s%>" class="section">
 
+  <div id="timer"><button onclick="initializeClock('timer', <%= key.to_s %>)">Start Timer</button><div class="minutes">45</div><div class="seconds">:00</div>
+  </div>
+
 <strong><h2><%= key.to_s.upcase %></h2><br></strong>
   <h3 id="<%= key.to_s %>Score"></h3><br>
 <% value.times do |x|  %>
