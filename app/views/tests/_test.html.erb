@@ -1,11 +1,12 @@
 <% format.each do |key, value| %>
 <div id="<%= key.to_s%>" class="section">
 
-  <div id="timer"><button onclick="initializeClock('timer', <%= key.to_s %>)">Start Timer</button><div class="minutes">45</div><div class="seconds">:00</div>
-  </div>
 
-<strong><h2><%= key.to_s.upcase %></h2><br></strong>
-  <h3 id="<%= key.to_s %>Score"></h3><br>
+
+<strong><h2><%= key.to_s.upcase %></h2></strong>
+
+  <div id="timer <%= key.to_s %>"><button class="btn btn-danger" onclick="initializeClock('timer', <%= key.to_s %>)">Start Timer</button><br><h4 class="time minutes"></h4><h4 class="time seconds"></h4><br>
+</div><br>
 <% value.times do |x|  %>
 <% index = x + 1 %>
 <%= f.fields_for :responses, @test.responses.build do |resource_fields| %>

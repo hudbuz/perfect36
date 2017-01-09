@@ -158,8 +158,9 @@ function getTimeRemaining(endtime) {
 
 function initializeClock(id, endtime) {
   var times = {english: 45, math: 60, reading: 35, science: 35}
+
+  var clock = document.getElementById(id + ' '+ endtime.id)
   endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
-  var clock = document.getElementById(id)
 
   var minutesSpan = clock.querySelector('.minutes')
   var secondsSpan = clock.querySelector('.seconds')
@@ -167,7 +168,7 @@ function initializeClock(id, endtime) {
   function updateClock() {
     var t = getTimeRemaining(endtime);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    secondsSpan.innerHTML = ':'+ ('0' + t.seconds).slice(-2);
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
