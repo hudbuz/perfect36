@@ -123,15 +123,15 @@ function sectionShift() {
   this.event.preventDefault();
     if (event.currentTarget.id === 'rightSection'){
       console.log('hit')
-      console.log($('#activeSection'))
+      console.log($('#activeSection')[0].attributes.value.value)
       $('#activeSection')[0].attributes.value.value ++
     }
     else {
       $('#activeSection')[0].attributes.value.value --
     }
     for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
+      debugger
       if (i == $('#activeSection')[0].attributes.value.value ){
-        debugger
 
         $('.test-container').children().children('.section')[i].style.display = ''
       }
