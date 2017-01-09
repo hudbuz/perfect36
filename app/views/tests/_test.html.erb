@@ -3,10 +3,10 @@
 
 
 
-<strong><h2><%= key.to_s.upcase %></h2></strong>
+<div class='text-center'><strong><h2><%= key.to_s.upcase %></h2></strong>
 
   <div id="timer <%= key.to_s %>"><button class="btn btn-danger" onclick="initializeClock('timer', <%= key.to_s %>)">Start Timer</button><br><h4 class="time minutes"></h4><h4 class="time seconds"></h4><br>
-</div><br>
+</div><br></div>
 <% value.times do |x|  %>
 <% index = x + 1 %>
 <%= f.fields_for :responses, @test.responses.build do |resource_fields| %>

@@ -33,7 +33,7 @@ function createTest() {
 
   $('#create').on('click', function(event){
 
-    event.preventDefault()
+
 
     var params = {}
     params["test"] = {}
@@ -47,7 +47,7 @@ function createTest() {
     for (i = 0; i < secs.length; i ++) {
 
     params["test"]["responses_attributes"][secs[i]]= {}
-    debugger
+
     var data = $('#'+secs[i]).children('div')
 
     for (s = 0; s < data.length; s ++) {
@@ -119,14 +119,19 @@ function changeIframe(){
   })
 }
 
-function sectionShift() {
+function sectionShift(side = null) {
 
-  this.event.preventDefault();
-    if (event.currentTarget.id === 'rightSection'){
 
+    if(side !== null){
       $('#activeSection')[0].attributes.value.value ++
     }
+    else if (event.currentTarget.id === 'rightSection'){
+        this.event.preventDefault();
+      $('#activeSection')[0].attributes.value.value ++
+    }
+
     else {
+        this.event.preventDefault();
       $('#activeSection')[0].attributes.value.value --
     }
 
@@ -157,7 +162,7 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
-  var times = {english: 45, math: 60, reading: 35, science: 35}
+  var times = {english: 1, math: 1, reading: 1, science: 1}
 
   var clock = document.getElementById(id + ' '+ endtime.id)
   endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
@@ -170,8 +175,23 @@ function initializeClock(id, endtime) {
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ':'+ ('0' + t.seconds).slice(-2);
 
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
+    if (t.minutes <= 0 && t.seconds <= 0) {
+
+      clearInterval(timeinterval)
+      debugger
+
+      if($('#activeSection')[0].attributes.value.value === '3'){
+        $('#create')[0].click();
+
+      }
+      else{
+        alert('You have run out of time. Please move on to the next section or submit test.')
+        sectionShift('right')
+
+      }
+    }
+    else if (t.minutes === 5 && t.seconds === 0){
+      alert('You have five minutes left.')
     }
   }
 
