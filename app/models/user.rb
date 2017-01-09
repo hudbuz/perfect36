@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
 
   def taken_test?
 ########fix this method; probs should be a scope
-binding.pry
     codes = []
     self.try(:tests).where(status: 'complete').each do |x|
 
