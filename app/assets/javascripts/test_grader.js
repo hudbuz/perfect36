@@ -178,7 +178,7 @@ function initializeClock(id, endtime) {
     if (t.minutes <= 0 && t.seconds <= 0) {
 
       clearInterval(timeinterval)
-      debugger
+  
 
       if($('#activeSection')[0].attributes.value.value === '3'){
         $('#create')[0].click();
