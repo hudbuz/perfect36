@@ -131,7 +131,7 @@ function sectionShift() {
     }
     for (i = 0; i < $('.test-container').children().children('.section').length; i ++) {
       if (i == $('#activeSection')[0].attributes.value.value ){
-
+        debugger
 
         $('.test-container').children().children('.section')[i].style.display = ''
       }
