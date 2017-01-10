@@ -111,7 +111,7 @@ function changeIframe(){
 
 
   answer_key = {id: event.target.selectedOptions[0].value}
-  $.get('/answer_keys/'+event.target.selectedOptions[0].value,answer_key, function(resp){
+  $.get('/answer_keys/'+event.target.selectedOptions[0].value, answer_key , function(resp){
 
     $('#newTestFrame')[0].src = resp.url
 
@@ -119,7 +119,7 @@ function changeIframe(){
   })
 }
 
-function sectionShift(side = null) {
+function sectionShift(side) {
 
 
     if(side !== null){
@@ -178,7 +178,7 @@ function initializeClock(id, endtime) {
     if (t.minutes <= 0 && t.seconds <= 0) {
 
       clearInterval(timeinterval)
-  
+
 
       if($('#activeSection')[0].attributes.value.value === '3'){
         $('#create')[0].click();
