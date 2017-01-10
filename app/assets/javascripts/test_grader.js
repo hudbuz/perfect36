@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  createTest();
 
 
 
@@ -32,6 +33,7 @@ Test.prototype.fillInScores = function() {
 function createTest() {
 
   $('#create').on('click', function(event){
+    event.preventDefault()
 
 
 
@@ -83,10 +85,9 @@ function createTest() {
 
 
 function getAnswer() {
+
+
   debugger
-  $('li .btn-danger').on('click', 'button', function(event) {
-
-
     event.preventDefault();
     var answer = {}
     answer["question"] = $(this.parentElement).index()
@@ -102,7 +103,7 @@ function getAnswer() {
 
     })
 
-  })
+
 
 
 }
@@ -121,17 +122,17 @@ function changeIframe(){
 
 function sectionShift(side) {
 
-
+  this.event.preventDefault()
     if(side !== null){
       $('#activeSection')[0].attributes.value.value ++
     }
     else if (event.currentTarget.id === 'rightSection'){
-        this.event.preventDefault();
+
       $('#activeSection')[0].attributes.value.value ++
     }
 
     else {
-        this.event.preventDefault();
+
       $('#activeSection')[0].attributes.value.value --
     }
 
@@ -162,6 +163,7 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
+  this.event.preventDefault();
   var times = {english: 1, math: 1, reading: 1, science: 1}
 
   var clock = document.getElementById(id + ' '+ endtime.id)

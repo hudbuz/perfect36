@@ -23,7 +23,8 @@ class TestsController < ApplicationController
     @test = Test.new(user_id: params[:user_id])
     @test.responses.build
     @format = Test.format
-    @answerkey = AnswerKey.find_by(code: params[:commit])
+  
+
 
     end
 

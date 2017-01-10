@@ -1,17 +1,17 @@
 class Test < ActiveRecord::Base
   belongs_to :answer_key
 
-  
+
   has_many :responses
   belongs_to :user
 
 
   def self.format
     format = {:english => 75, :math => 60, :reading => 40, :science => 40}
-    
+
   end
 
-  
+
 
 
   def responses_attributes=(responses_attributes)
@@ -19,13 +19,14 @@ class Test < ActiveRecord::Base
   form = Test.format
 
   responses_attributes.each do |section|
-   
+
     test_section = Section.find_by(answer_key_id: self.answer_key_id, title: section[0])
+    binding.pry
     answers = test_section.answers.order('question ASC')
     section[1].each do |number,resp|
-     
+
       num = number.to_i - 1
-   
+
       if answers[num].correct_answer == resp.upcase
         score = 1
       else
@@ -35,13 +36,13 @@ class Test < ActiveRecord::Base
       response.save
 
     end
- 
+
   end
 
 
 
-      
-      
+
+
 
     end
 
@@ -50,22 +51,22 @@ class Test < ActiveRecord::Base
       Test.format.each do |key,value|
         s = Section.find_by(title: key.to_s, answer_key_id: self.answer_key_id)
         scores << self.responses.where(score: 1, section: s).count.to_f/s.answers.count.to_f
-      
+
       end
       scaled = scores.collect do |n|
         n*36
       end
-     
+
       scores = {}
       average = scaled.inject(:+)/4
-   
+
       if average.ceil - average > 0.50.to_f
         average = average.ceil
       else
         average = average.floor
       end
 
-     
+
       self.english_score = scaled[0]
       self.math_score = scaled[1]
       self.reading_score = scaled[2]
@@ -73,16 +74,16 @@ class Test < ActiveRecord::Base
       self.total_score = average
 
 
-      self.save    
+      self.save
 
 
 
     end
 
-   
 
 
-  
+
+
 
 
 
