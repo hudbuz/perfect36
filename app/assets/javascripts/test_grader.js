@@ -83,8 +83,8 @@ function createTest() {
 
 
 function getAnswer() {
-
-  $(document).on('click', 'button', function(event) {
+  debugger
+  $('li .btn-danger').on('click', 'button', function(event) {
 
 
     event.preventDefault();
