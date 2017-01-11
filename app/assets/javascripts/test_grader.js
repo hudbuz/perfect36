@@ -163,9 +163,10 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
+  alert('hi')
   alert(endtime)
 
-  this.event.preventDefault()
+
   console.log(id)
   console.log(endtime)
   var times = {english: 45, math: 60, reading: 35, science: 35}
