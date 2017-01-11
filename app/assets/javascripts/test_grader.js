@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+  createTest()
 
 
 
@@ -33,9 +33,9 @@ function createTest() {
 
 
 
-debugger
+  $('#create').on('click', function(event){
 
-  this.event.preventDefault()
+  event.preventDefault()
 
 
 
@@ -79,7 +79,7 @@ debugger
 
     $('#create').hide()
 
-
+})
 
 }
 
