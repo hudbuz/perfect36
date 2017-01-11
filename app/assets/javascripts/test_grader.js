@@ -163,7 +163,8 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
-  debugger
+  alert(endtime)
+
   this.event.preventDefault()
   console.log(id)
   console.log(endtime)
