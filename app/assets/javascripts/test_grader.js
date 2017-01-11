@@ -17,7 +17,7 @@ function Test (id, english_score, math_score, reading_score, science_score, tota
   this.completed = completed
 }
 
-const Times = [45, 60, 40, 40]
+
 
 Test.prototype.fillInScores = function() {
   $('#takenAt').html('Completed at: ' + this.completed)
@@ -165,12 +165,11 @@ function getTimeRemaining(endtime) {
 function initializeClock(id, endtime) {
   alert('hi')
   alert(endtime)
-
+  return endtime
 
   console.log(id)
   console.log(endtime)
   var times = {english: 45, math: 60, reading: 35, science: 35}
-
   var clock = document.getElementById(id + ' '+ endtime.id)
   endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
 
