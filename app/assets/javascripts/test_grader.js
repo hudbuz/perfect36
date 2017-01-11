@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+  createTest();
 
 
 
@@ -165,8 +165,8 @@ function initializeClock(id, endtime) {
   this.event.preventDefault();
   var times = {english: 45, math: 60, reading: 35, science: 35}
 
-  var clock = document.getElementById(id + ' '+ endtime.id)
-  endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
+  var clock = document.getElementById(id + ' '+ endtime)
+  endtime = new Date(Date.parse(new Date()) + times[endtime] * 60 * 1000);
 
   var minutesSpan = clock.querySelector('.minutes')
   var secondsSpan = clock.querySelector('.seconds')
