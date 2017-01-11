@@ -379,6 +379,7 @@ $(function() {
 
 
       for (i = 0; i < tests.length; i ++) {
+				debugger
          $('#tests').append('<div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'"><p class="lead">'+'Test' + tests[i]["code"] + '</p></div>' )
 
         $('#'+tests[i]["id"]).append('<li class="list-group-item">English Score: ' + tests[i]["english_score"]+'</li>')

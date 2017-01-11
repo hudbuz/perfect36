@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
 
 
+
   def taken_test?
 ########fix this method; probs should be a scope
     codes = []
@@ -35,6 +36,12 @@ class User < ActiveRecord::Base
 
     not_taken
 
+  end
+
+  def codes
+    tests.collect do |a|
+      a.answer_key.code
+    end
   end
 
 

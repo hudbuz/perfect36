@@ -21,7 +21,7 @@ class Test < ActiveRecord::Base
   responses_attributes.each do |section|
 
     test_section = Section.find_by(answer_key_id: self.answer_key_id, title: section[0])
-    binding.pry
+
     answers = test_section.answers.order('question ASC')
     section[1].each do |number,resp|
 
