@@ -41,7 +41,7 @@ class TestsController < ApplicationController
     @test.status = 'complete'
     @test.save
     @test.grade_test
-    # render json: @test, include: ["responses"], status: 201
+    render json: @test, include: ["responses"], status: 201
     redirect_to user_test_path(current_user, @test)
 
   end

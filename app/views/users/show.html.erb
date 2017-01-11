@@ -353,8 +353,8 @@ $(function() {
       for (i = 0; i < data['tests'].length; i ++){
         if (data['tests'][i]['total_score'] !== null){
         testData.push([])
-				
-        testData[i].push({axis:'Total Score', value: data['tests'][i]['total_score'], answer_key: data['tests'][i]['answer_key_id']},
+
+        testData[i].push({axis:'Total Score', value: data['tests'][i]['total_score'], answer_key: data['tests'][i]['code']},
         {axis:'Math', value: data['tests'][i]['math_score'], answer_key: data['tests'][i]['answer_key_id']},
         {axis:'Reading', value: data['tests'][i]['reading_score'], answer_key: data['tests'][i]['answer_key_id']},
         {axis:'Science', value: data['tests'][i]['science_score'], answer_key: data['tests'][i]['answer_key_id']},
