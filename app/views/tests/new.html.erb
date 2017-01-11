@@ -13,7 +13,7 @@
 
 
 
-<div id="hiddenUserId" type="hidden" value="<%=current_user.id%>"></div>
+<div id="hiddenUserId" type="hidden" value="<%= @user.id%>"></div>
 
 <div class="panel-body">
 <div class="text-center">
@@ -23,10 +23,10 @@
 
 <%= render partial:'/tests/test', locals:{format: @format, f: f} %>
 
-
+<% f.submit %>
 <% end %>
 
-<button id="create" type="button" onclick="createTest()" class="btn btn-primary">Submit</button>
+<button id="create" onclick="createTest()" class="btn btn-primary">Submit</button>
 
 </div>
 </div>
