@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  createTest();
+
 
 
 
@@ -31,11 +31,11 @@ Test.prototype.fillInScores = function() {
 
 function createTest() {
 
-$('#create').on('click', function(event) {
 
 
 
-  event.preventDefault()
+
+  this.event.preventDefault()
 
 
 
@@ -77,7 +77,7 @@ $('#create').on('click', function(event) {
     })
 
     $('#create').hide()
-})
+
 
 
 }
