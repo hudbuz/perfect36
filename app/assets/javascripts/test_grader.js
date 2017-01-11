@@ -36,7 +36,7 @@ $('#create').on('click', function(event) {
 
 
   event.preventDefault()
-  debugger
+
 
 
     var params = {}
@@ -163,7 +163,7 @@ function getTimeRemaining(endtime) {
 
 function initializeClock(id, endtime) {
   this.event.preventDefault();
-  var times = {english: 45, math: 60, reading: 30, science: 30}
+  var times = {english: 45, math: 60, reading: 35, science: 35}
 
   var clock = document.getElementById(id + ' '+ endtime.id)
   endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
