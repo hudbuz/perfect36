@@ -25,9 +25,9 @@ class Test < ActiveRecord::Base
     answers = test_section.answers.order('question ASC')
 
     section[1].each do |number,resp|
-      print section[0]
-      num = number.to_i - 1
 
+      num = number.to_i - 1
+      print num
       if answers[num].correct_answer == resp.upcase
         score = 1
       else
