@@ -32,8 +32,11 @@ Test.prototype.fillInScores = function() {
 
 function createTest() {
 
+$('#create').on('click', function(event) {
 
-    this.event.preventDefault()
+
+
+  event.preventDefault()
 
 
 
@@ -62,11 +65,10 @@ function createTest() {
           params["test"]["responses_attributes"][secs[i]][s+1] = data[s].children[d].id.slice(-1)
         }
 
-    }}
 
-  }
+  }}}
 
-
+  debugger
    var posting = $.post('/tests', params)
 
     posting.done(function(data) {
@@ -77,8 +79,7 @@ function createTest() {
     })
 
     $('#create').hide()
-
-
+})
 
 
 }
