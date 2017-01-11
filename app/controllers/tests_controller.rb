@@ -23,7 +23,7 @@ class TestsController < ApplicationController
     @test = Test.new(user_id: params[:user_id])
     @test.responses.build
     @format = Test.format
-  
+
 
 
     end
@@ -33,8 +33,8 @@ class TestsController < ApplicationController
   def create
 
 
-
     @test = Test.create(test_params)
+    binding.pry
     @test.responses_attributes=params["test"]["responses_attributes"]
 
 

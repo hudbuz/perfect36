@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  createTest();
+
 
 
 
@@ -50,7 +50,7 @@ function createTest() {
 
     params["test"]["responses_attributes"][secs[i]]= {}
 
-    var data = $('#'+secs[i]).children('li')
+    var data = $('#'+secs[i]).children('div #question')
 
     for (s = 0; s < data.length; s ++) {
 
@@ -87,7 +87,7 @@ function createTest() {
 function getAnswer() {
 
 
-  debugger
+
     event.preventDefault();
     var answer = {}
     answer["question"] = $(this.parentElement).index()

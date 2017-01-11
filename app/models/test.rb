@@ -26,7 +26,7 @@ class Test < ActiveRecord::Base
     section[1].each do |number,resp|
 
       num = number.to_i - 1
-
+  
       if answers[num].correct_answer == resp.upcase
         score = 1
       else
