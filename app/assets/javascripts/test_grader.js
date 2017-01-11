@@ -163,11 +163,11 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
-  debugger
+  this.event.preventDefault()
   console.log(id)
   console.log(endtime)
   var times = {english: 45, math: 60, reading: 35, science: 35}
-
+  debugger
   var clock = document.getElementById(id + ' '+ endtime.id)
   endtime = new Date(Date.parse(new Date()) + times[endtime.id] * 60 * 1000);
 
