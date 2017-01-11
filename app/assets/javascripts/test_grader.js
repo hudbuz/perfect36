@@ -55,7 +55,8 @@ function createTest() {
     var data = $('#'+secs[i]).children('div #question')
 
     for (s = 0; s < data.length; s ++) {
-
+      console.log(s)
+      console.log(data[s])
       params["test"]["responses_attributes"][secs[i]][s+1] =  null
       for (d = 0; d < data[s].children.length; d ++) {
 
@@ -162,6 +163,7 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
+  debugger
   this.event.preventDefault();
   console.log(id)
   console.log(endtime)
