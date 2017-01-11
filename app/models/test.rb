@@ -17,7 +17,7 @@ class Test < ActiveRecord::Base
   def responses_attributes=(responses_attributes)
 
   form = Test.format
-
+  
   responses_attributes.each do |section|
 
     test_section = Section.find_by(answer_key_id: self.answer_key_id, title: section[0])
@@ -26,7 +26,7 @@ class Test < ActiveRecord::Base
     section[1].each do |number,resp|
 
       num = number.to_i - 1
-  
+
       if answers[num].correct_answer == resp.upcase
         score = 1
       else
