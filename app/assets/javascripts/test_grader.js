@@ -51,7 +51,7 @@ function createTest() {
     params["test"]["responses_attributes"][secs[i]]= {}
 
     var data = $('#'+secs[i]).children('div')
-
+    debugger
     for (s = 0; s < data.length; s ++) {
 
       params["test"]["responses_attributes"][secs[i]][s+1] =  null
