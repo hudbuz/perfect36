@@ -37,7 +37,7 @@ $('#create').on('click', function(event) {
 
 
   event.preventDefault()
-
+  debugger
 
 
     var params = {}
@@ -68,7 +68,6 @@ $('#create').on('click', function(event) {
 
   }}}
 
-  debugger
    var posting = $.post('/tests', params)
 
     posting.done(function(data) {
