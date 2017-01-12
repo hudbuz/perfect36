@@ -33,6 +33,7 @@
 <h1 id="welcome_user">Welcome <%= @user.name %></h1>
 <h3 id="tutorName">Your tutor is <%= User.find(@user.tutor_id).name %></h3><br><br>
 </div>
+<div id="codes" codes="<%= @taken.to_json %>"></div>
 
 <div id="d3">
 
@@ -327,7 +328,12 @@ $(function() {
   var url = document.URL
 
   $.get(url + '.json', function(data) {
+
     ///begin d3 rendering
+		data['tests'] = data.tests.sort(function(a,b){a.answer_key_id - b.answer_key_id})
+
+		var codes = JSON.parse($('#codes')[0].attributes[1].value)
+
     var margin = {top: 75, right: 80, bottom: 10, left: 80},
       width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
       height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
@@ -354,7 +360,7 @@ $(function() {
         if (data['tests'][i]['total_score'] !== null){
         testData.push([])
 
-        testData[i].push({axis:'Total Score', value: data['tests'][i]['total_score'], answer_key: data['tests'][i]['code']},
+        testData[i].push({axis:'Total Score', value: data['tests'][i]['total_score'], answer_key: data['tests'][i]['answer_key_id']},
         {axis:'Math', value: data['tests'][i]['math_score'], answer_key: data['tests'][i]['answer_key_id']},
         {axis:'Reading', value: data['tests'][i]['reading_score'], answer_key: data['tests'][i]['answer_key_id']},
         {axis:'Science', value: data['tests'][i]['science_score'], answer_key: data['tests'][i]['answer_key_id']},
@@ -370,6 +376,7 @@ $(function() {
 
     ///test information located at bottom of page
     $('#welcome_user').html('Welcome '+ data["name"])
+
     var tests = data["tests"]
 
     if (tests !== []) {
@@ -380,7 +387,7 @@ $(function() {
 
       for (i = 0; i < tests.length; i ++) {
 
-         $('#tests').append('<div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'"><p class="lead">'+'Test' + tests[i]["code"] + '</p></div>' )
+         $('#tests').append('<div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'"><p class="lead">'+'Test ' +codes[i]['code']+'</p></div>' )
 
         $('#'+tests[i]["id"]).append('<li class="list-group-item">English Score: ' + tests[i]["english_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li class="list-group-item">Math Score: '+ tests[i]["math_score"]+'</li>')

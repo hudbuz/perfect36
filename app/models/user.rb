@@ -38,6 +38,16 @@ class User < ActiveRecord::Base
 
   end
 
+  def taken_tests
+    tests = []
+    self.tests.where(status: 'complete').order(:answer_key_id).each do |t|
+      tests << t.answer_key
+    end
+    tests
+
+
+  end
+
   def codes
     tests.collect do |a|
       a.answer_key.code

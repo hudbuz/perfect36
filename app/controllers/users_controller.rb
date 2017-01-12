@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user == current_user
       @user = current_user
       @available = @user.taken_test?
-
+      @taken = @user.taken_tests
       respond_to do |format|
       format.html {render :show}
       format.json {render json: @user}
