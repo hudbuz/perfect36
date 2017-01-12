@@ -387,7 +387,7 @@ $(function() {
 
       for (i = 0; i < tests.length; i ++) {
 
-         $('#tests').append('<div class="taken_tests col-sm-4" id="'+ tests[i]["id"]+'"><p class="lead">'+'Test ' +codes[i]['code']+'</p></div>' )
+         $('#tests').append('<div class="taken_tests panel panel-success" id="'+ tests[i]["id"]+'"><p class="panel-heading">'+'Test ' +codes[i]['code']+'</p></div>' )
 
         $('#'+tests[i]["id"]).append('<li class="list-group-item">English Score: ' + tests[i]["english_score"]+'</li>')
         $('#'+tests[i]["id"]).append('<li class="list-group-item">Math Score: '+ tests[i]["math_score"]+'</li>')
