@@ -86,7 +86,7 @@ function createTest() {
 
 function getAnswer() {
 
-
+  debugger
 
     event.preventDefault();
     var answer = {}
