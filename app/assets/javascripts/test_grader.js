@@ -86,15 +86,17 @@ function createTest() {
 
 function getAnswer() {
 
-  debugger
+
 
     event.preventDefault();
     var answer = {}
-    answer["question"] = $(this.parentElement).index()
-    answer["section"] = $(this.parentElement.parentElement)[0].id
+    answer["question"] = this.event.target.parentElement.children[1].attributes.question.value
+
+    answer["section"] = this.event.target.parentElement.parentElement.id
     answer["akey"] = $('#hiddenAnswerKeyId').attr('value')
 
     $.get('/answers', answer, function(data) {
+
       var correct = data["correct_answer"]
 
 
